@@ -1,11 +1,11 @@
 ---
 name: day1-install
-description: "Internal Camp Day 1: Install Claude Code & first conversations. Covers installation, terminal basics, CLAUDE.md, and first real task. Use for \"Day 1\", \"install\", \"setup\", \"onboarding\"."
+description: "Internal Camp Day 1: Install Claude Code & first conversations. Covers GUI vs CLI, Claude Desktop App, CLAUDE.md, web search, and Plan Mode. Use for \"Day 1\", \"install\", \"setup\", \"onboarding\"."
 ---
 
 # Day 1: Install & First Conversations
 
-This skill teaches non-engineers to install Claude Code, navigate the terminal, set up CLAUDE.md, and have their first productive conversations.
+This skill teaches non-engineers to understand GUI vs CLI, install the Claude Desktop App, set up CLAUDE.md, and have their first productive conversations including web search and Plan Mode.
 
 ---
 
@@ -55,11 +55,12 @@ When you're done, type "done" or "next" to continue.
 | Block | File | Topic |
 |-------|------|-------|
 | 0 | `references/block0-welcome.md` | Welcome + what to expect |
-| 1 | `references/block1-terminal-basics.md` | Terminal survival guide |
-| 2 | `references/block2-install.md` | Install Claude Code |
+| 1 | `references/block1-terminal-basics.md` | GUI vs CLI introduction |
+| 2 | `references/block2-install.md` | Install the Claude Desktop App |
 | 3 | `references/block3-first-conversation.md` | First real conversation |
 | 4 | `references/block4-claude-md.md` | CLAUDE.md — teach Claude about you |
-| 5 | `references/block5-multi-turn.md` | Multi-turn problem solving |
+| 5 | `references/block5-multi-turn.md` | Multi-turn problem solving + web search |
+| 6 | `references/block6-plan-mode.md` | Introduction to Plan Mode |
 
 ---
 
@@ -68,7 +69,7 @@ When you're done, type "done" or "next" to continue.
 - One block at a time
 - Navigate with "next", "skip", or block number/name
 - For Claude Code questions, use claude-code-guide agent
-- Language: match the participant's language (Korean or English)
+- Language: English
 - Tone: friendly, encouraging, patient — remember these are non-engineers
 - Always celebrate small wins ("Great job!", "You just did something most people never try!")
 
@@ -85,11 +86,9 @@ AskUserQuestion({
     "header": "Day 1: Install & First Conversations",
     "options": [
       {"label": "Block 0: Welcome", "description": "What this camp is about + what you'll build"},
-      {"label": "Block 1: Terminal Basics", "description": "Essential commands for non-engineers"},
-      {"label": "Block 2: Install", "description": "Install Claude Code step by step"},
-      {"label": "Block 3: First Conversation", "description": "Talk to Claude for the first time"},
-      {"label": "Block 4: CLAUDE.md", "description": "Teach Claude about your role and work"},
-      {"label": "Block 5: Multi-turn", "description": "Solve a real problem through conversation"}
+      {"label": "Block 1: GUI vs CLI", "description": "Two ways to talk to your computer"},
+      {"label": "Block 2: Install", "description": "Install the Claude Desktop App"},
+      {"label": "Block 3: First Conversation", "description": "Talk to Claude for the first time"}
     ],
     "multiSelect": false
   }]

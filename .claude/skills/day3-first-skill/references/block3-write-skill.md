@@ -7,7 +7,19 @@ Time to write your actual skill. You have everything you need:
 - The anatomy from Block 2 (frontmatter, steps, output format, error handling)
 - Your MCP connections from Day 2
 
-### Writing Tips
+### The Custom Skill Builder
+
+Instead of writing your SKILL.md from scratch, we'll use the **Custom Skill Builder** — a skill that builds other skills through an interactive conversation.
+
+**Install it from:** https://github.com/Swingvy/skill-to-build-skill
+
+The Custom Skill Builder will:
+1. Ask you about your task (what it does, inputs, outputs)
+2. Guide you through defining each section
+3. Generate a complete, well-structured SKILL.md
+4. Save it in the right location
+
+### Writing Tips (if writing manually)
 
 **Start small.** Your first version doesn't need to do everything. Start with the core 3-5 steps. You can add more later.
 
@@ -20,16 +32,30 @@ Time to write your actual skill. You have everything you need:
 ### The Process
 
 ```
-1. Create the folder:    mkdir -p .claude/skills/your-skill-name
-2. Create the file:      Ask Claude to create SKILL.md based on your task description
-3. Review and edit:      Read what Claude wrote, adjust to match your needs exactly
-4. Test it:              /your-skill-name
-5. Fix and improve:      Iterate based on what worked and what didn't
+1. Install the Custom Skill Builder (if not already installed)
+2. Run the builder — it will guide you interactively
+3. Review the generated SKILL.md
+4. Test it: /your-skill-name
+5. Fix and improve: iterate based on results
 ```
 
-### Ask Claude for Help
+## EXECUTE
 
-You can ask Claude to help you write your skill! Try:
+**Option: Use the Custom Skill Builder**
+
+1. Install the Custom Skill Builder from https://github.com/Swingvy/skill-to-build-skill
+2. Follow the builder's interactive prompts:
+   - Describe your task from Block 1
+   - Specify the inputs, steps, and output format
+   - The builder will generate your SKILL.md
+3. Review the generated file:
+   - Are the steps specific enough?
+   - Is the output format clear?
+   - Are error cases covered?
+   - Does the description include trigger words?
+4. Save and prepare for testing (next block)
+
+If you prefer to write manually, you can also ask Claude directly:
 
 ```
 Help me create a skill called [name].
@@ -43,31 +69,6 @@ The tools involved are: [Slack, Google Drive, etc.]
 
 Create the SKILL.md file in .claude/skills/[name]/SKILL.md
 ```
-
-Claude will draft the SKILL.md for you. Then review it and refine.
-
-## EXECUTE
-
-Now write your skill:
-
-1. Tell me (or Claude in a fresh session) about the task you chose in Block 1:
-   - What's the task name?
-   - What are the inputs?
-   - What are the steps?
-   - What's the output?
-   - What tools are involved?
-
-2. Create the skill file. Either:
-   - Ask Claude to generate it from your description, OR
-   - Write it yourself using the anatomy template
-
-3. Review the generated SKILL.md:
-   - Are the steps specific enough?
-   - Is the output format clear?
-   - Are error cases covered?
-   - Does the description include trigger words?
-
-4. Save and prepare for testing (next block)
 
 Remember: **done is better than perfect.** You can always improve it after testing.
 

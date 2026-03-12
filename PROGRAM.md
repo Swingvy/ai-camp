@@ -39,19 +39,20 @@ Everyone has Claude Code running and can hold a productive conversation.
 
 ### Concept (40 min)
 
-**1. What is Claude Code?**
-- Not a chatbot — a CLI agent that reads, writes, and executes
-- Why terminal? (speed, automation, no copy-paste, direct file access)
+**1. GUI vs CLI**
+- GUI (Graphical User Interface): clicking icons, menus, visual interaction
+- CLI (Command Line Interface): typing text commands
+- Claude Code uses a CLI-style interface — you type natural language instructions
 - Live demo: solve a real task in 2 minutes that normally takes 30
 
-**2. Installation**
+**2. Installation — Claude Desktop App**
 
-| Step | Command | Notes |
-|------|---------|-------|
-| Install Node.js | `brew install node` (Mac) / download from nodejs.org (Windows) | v18+ required |
-| Install Claude Code | `npm install -g @anthropic-ai/claude-code` | One command |
-| First launch | `claude` | Opens interactive session |
-| Auth | Follow browser prompt | Anthropic account or API key |
+| Step | What to do | Notes |
+|------|-----------|-------|
+| Download | Go to claude.ai/download | Mac or Windows |
+| Install | Run the installer | Follow on-screen prompts |
+| Launch | Open Claude Desktop App | From Applications or Start Menu |
+| Sign in | Follow on-screen prompts | Anthropic account |
 
 **3. Terminal Basics (for non-engineers)**
 
@@ -71,18 +72,23 @@ Everyone has Claude Code running and can hold a productive conversation.
 - Ask Claude to create a simple file (e.g., "Create a weekly schedule template for my team")
 - Review what Claude created, ask for modifications
 
-**Exercise 2: CLAUDE.md — Teaching Claude About You**
-- Create a `CLAUDE.md` file that describes:
+**Exercise 2: CLAUDE.md — Teaching Claude About You (Survey-based)**
+- Complete a structured survey about:
   - Your role and team
-  - Tools you use daily (Slack, Notion, Google Sheets, etc.)
+  - Tools you use daily (Slack, Jira, Confluence, HubSpot, Gmail, Google Calendar, Google Docs, Google Meet, Dropbox)
   - Your common tasks
-  - Your preferences (language, format, style)
+  - Your preferences (format, style)
+- Claude auto-generates a personalized `CLAUDE.md` based on your answers
 - Test: Ask Claude something about your work and see how CLAUDE.md changes the response
 
-**Exercise 3: Multi-turn Problem Solving**
-- Bring a real work problem (e.g., "I need to summarize 50 customer complaints")
-- Work with Claude through multiple turns to solve it
+**Exercise 3: Multi-turn Problem Solving + Web Search**
+- Bring a real work problem and work with Claude through multiple turns to solve it
 - Practice: giving context, being specific, correcting course
+- Web Search Report: Research a topic relevant to your work and have Claude create a structured report
+
+**Exercise 4: Plan Mode Introduction**
+- Learn how to use Plan Mode for complex, multi-step tasks
+- Practice: use `/plan` to have Claude plan before executing
 
 ### Daily Journal
 ```
@@ -96,7 +102,7 @@ One thing I want to try tomorrow:
 ## Day 2: Connect Your Tools (MCP)
 
 ### Goal
-Claude Code is connected to Slack, Google Drive, Notion, or whatever tools each person uses daily.
+Claude Code is connected to Slack, Google Drive, Jira, or whatever tools each person uses daily.
 
 ### Concept (40 min)
 
@@ -108,40 +114,37 @@ Claude Code is connected to Slack, Google Drive, Notion, or whatever tools each 
 **2. How MCP Works**
 ```
 You ──→ Claude Code ──→ MCP Server ──→ Your Tool
-         "Get my latest            Slack / Notion /
+         "Get my latest            Slack / Jira /
           Slack messages"          Google Drive / etc.
 ```
 
 **3. Available MCP Servers (pick what you use)**
 
-| Tool | MCP Server | What it enables |
-|------|-----------|-----------------|
-| Slack | `@anthropic/slack-mcp` | Read channels, send messages, search history |
-| Google Drive | `@anthropic/gdrive-mcp` | Read/create docs, sheets, slides |
-| Notion | `notion-mcp-server` | Read/update pages, databases |
-| GitHub | `@anthropic/github-mcp` | Issues, PRs, code search |
-| Linear | `linear-mcp-server` | Issue tracking, project management |
-| Figma | `figma-mcp-server` | Read designs, extract specs |
-| Calendar | `google-calendar-mcp` | Read/create events |
-| File System | `@anthropic/filesystem-mcp` | Read/write local files safely |
-| Web | `@anthropic/web-mcp` | Fetch and read web pages |
+| Tool | Install method | What it enables |
+|------|---------------|-----------------|
+| Slack | `/install slack` | Read channels, send messages, search history |
+| Google Drive | gws CLI setup | Read/create Docs, Sheets, Slides |
+| Gmail | `/install gmail` | Read, draft, send emails |
+| Google Calendar | gws CLI setup | View/create events |
+| Google Meet | gws CLI setup | View meeting details |
+| Jira | `claude mcp add jira` | Issues, boards, sprints |
+| Confluence | `claude mcp add confluence` | Read/search wiki pages |
+| HubSpot | `claude mcp add hubspot` | CRM, contacts, deals, marketing |
+| Dropbox | `claude mcp add dropbox` | File storage and sharing |
 
 ### Hands-on (80 min)
 
 **Exercise 1: Install Your First MCP Server**
-```bash
-# Example: Slack
-claude mcp add slack -- npx -y @anthropic/slack-mcp
-
-# Example: Google Drive
-claude mcp add gdrive -- npx -y @anthropic/gdrive-mcp
+```
+# Slack (recommended first server)
+/install slack
 ```
 - Each participant installs 1–2 MCP servers for their most-used tools
 - Verify: "Claude, show me my latest Slack messages from #general"
 
 **Exercise 2: Cross-tool Queries**
 - "Summarize the last week of #product-feedback on Slack and create a Google Doc report"
-- "Find all open issues assigned to me on Linear and post a status update to Slack"
+- "Find all open issues assigned to me on Jira and post a status update to Slack"
 - Each person designs a query that spans 2 of their connected tools
 
 **Exercise 3: Troubleshooting Workshop**
@@ -167,24 +170,28 @@ Each participant creates a reusable Claude Code Skill that automates a repetitiv
 - Invoked with `/skill-name` — like a custom command
 - Not code — just structured instructions in plain language
 
-**2. Anatomy of a Skill**
+**2. Discover Existing Skills**
+- Browse the Skill search site at https://skills.sh/ to find ready-made skills
+- Find skills relevant to your role and try them out
+
+**3. Anatomy of a Skill**
 
 ```markdown
 ---
 name: weekly-report
-description: Generate a weekly status report from Slack and Linear.
+description: Generate a weekly status report from Slack and Jira.
   Use when asked for "weekly report", "status update", or "weekly summary".
 ---
 
 # Weekly Status Report Generator
 
 ## What this skill does
-Collects updates from Slack channels and Linear issues,
+Collects updates from Slack channels and Jira issues,
 then produces a formatted weekly report.
 
 ## Steps
 1. Fetch messages from #team-updates (last 7 days)
-2. Fetch completed Linear issues (last 7 days)
+2. Fetch completed Jira issues (last 7 days)
 3. Summarize into sections: Completed, In Progress, Blocked
 4. Format as markdown with bullet points
 5. Save to `reports/week-{date}.md`
@@ -193,7 +200,7 @@ then produces a formatted weekly report.
 (define exactly what the output should look like)
 ```
 
-**3. Good Skill = Good Prompt**
+**4. Good Skill = Good Prompt**
 
 | Principle | Bad | Good |
 |-----------|-----|------|
@@ -210,23 +217,10 @@ Each participant answers:
 - What inputs does it need? What output does it produce?
 - How long does it take you manually?
 
-Common examples by role:
-
-| Role | Skill idea |
-|------|-----------|
-| HR | `/onboarding-checklist` — Generate personalized onboarding docs for new hires |
-| Finance | `/expense-summary` — Summarize expense reports from shared drive |
-| Marketing | `/social-draft` — Draft social media posts from product updates |
-| Sales | `/deal-brief` — Compile customer info before a sales call |
-| CS | `/ticket-summary` — Summarize support tickets by category |
-| Ops | `/vendor-compare` — Compare vendor proposals side by side |
-| PM | `/sprint-recap` — Generate sprint recap from Linear/Jira |
-| Legal | `/contract-review` — Extract key terms from contract drafts |
-
-**Exercise 2: Write Your Skill**
-- Create `.claude/skills/your-skill-name/SKILL.md`
-- Follow the anatomy template
-- Include: name, description, steps, output format, error handling
+**Exercise 2: Write Your Skill Using the Custom Skill Builder**
+- Use the Custom Skill Builder from: https://github.com/Swingvy/skill-to-build-skill
+- This tool helps generate your SKILL.md based on your task description
+- Review and refine the generated skill
 
 **Exercise 3: Test & Iterate**
 - Run your skill: `/your-skill-name`
@@ -239,28 +233,24 @@ Each participant demos their skill to the group (2 min each).
 
 ---
 
-## Day 4: Advanced Skills & Workflows
+## Day 4: Skill Chaining, Enhancement & Team Sharing
 
 ### Goal
-Level up skills with subagents, multi-step workflows, and team sharing.
+Level up skills with multi-step workflows, enhancement techniques, and team sharing.
 
 ### Concept (40 min)
 
-**1. Subagents — Divide and Conquer**
-- A skill can launch background agents to work in parallel
-- Example: Fetch Slack data AND Linear data at the same time, then combine
-- Use the Agent tool inside your skill instructions
-
-**2. Chaining Skills — Workflows**
+**1. Chaining Skills — Workflows**
 - Skill A outputs → Skill B takes as input
 - Example: `/collect-feedback` → `/analyze-sentiment` → `/draft-response`
 
-**3. Hooks — Automatic Triggers**
-- Run actions automatically when Claude does something
-- Example: auto-format every file Claude creates
-- Example: validate output before saving
+**2. Enhancing Skills**
+- Add input validation (check before running)
+- Add output formatting (professional-looking results)
+- Add error messages (graceful failures)
+- Chain with a second skill for complete workflows
 
-**4. Sharing Skills Across the Team**
+**3. Sharing Skills Across the Team**
 - Skills live in `.claude/skills/` — shareable via git
 - Team repository: everyone contributes skills, everyone benefits
 - Version control: skills improve over time
@@ -269,10 +259,10 @@ Level up skills with subagents, multi-step workflows, and team sharing.
 
 **Exercise 1: Enhance Yesterday's Skill**
 Choose one upgrade:
-- Add parallel data fetching (subagent)
 - Add input validation (check before running)
 - Add output formatting (professional-looking results)
 - Add error messages (graceful failures)
+- Chain with a second skill
 
 **Exercise 2: Build a Two-Skill Workflow**
 Create a second skill that works with your first:
@@ -365,10 +355,10 @@ Build one of the following (or propose your own):
 | Task | When | Owner |
 |------|------|-------|
 | Set up Anthropic org account with enough seats | 2 weeks before | Admin |
-| Pre-install Node.js on all participant laptops | 1 week before | IT |
+| Ensure Claude Desktop App is downloadable on company network | 1 week before | IT |
 | Create team GitHub repo for shared skills | 1 week before | Instructor |
 | Set up #claude-code Slack channel | 1 week before | Instructor |
-| Prepare MCP auth tokens (Slack, Google, etc.) | 3 days before | IT + Admin |
+| Prepare MCP auth tokens (Slack, Google, Jira, etc.) | 3 days before | IT + Admin |
 | Test full install flow on company network | 3 days before | Instructor |
 | Collect participant role + daily tools survey | 1 week before | Instructor |
 | Prepare fallback hotspot (in case of network issues) | 1 day before | Instructor |
@@ -381,9 +371,9 @@ Send this 1 week before camp:
 1. Your name and team:
 2. Your role (what do you do day-to-day?):
 3. Tools you use daily (check all):
-   [ ] Slack  [ ] Notion  [ ] Google Workspace  [ ] Linear
-   [ ] Jira   [ ] Figma   [ ] Salesforce  [ ] HubSpot
-   [ ] Other: ___
+   [ ] Slack  [ ] Gmail  [ ] Google Calendar  [ ] Google Docs
+   [ ] Google Meet  [ ] Jira  [ ] Confluence  [ ] HubSpot
+   [ ] Dropbox  [ ] Other: ___
 4. One repetitive task you wish was automated:
 5. Comfort level with terminal/command line (1-5):
 6. Have you used any AI tools before? Which ones?
@@ -424,14 +414,16 @@ Give this to every participant on Day 1:
 ║              CLAUDE CODE QUICK REFERENCE                 ║
 ╠══════════════════════════════════════════════════════════╣
 ║                                                          ║
-║  START          claude                                   ║
+║  START          Open Claude Desktop App                  ║
 ║  EXIT           /exit  or  Ctrl+C                        ║
 ║  CLEAR          /clear                                   ║
 ║  HELP           /help                                    ║
+║  PLAN MODE      /plan                                    ║
 ║                                                          ║
 ║  SKILLS         /skill-name     (run a skill)            ║
 ║  MCP LIST       claude mcp list (see connections)        ║
 ║  MCP ADD        claude mcp add name -- command           ║
+║  INSTALL        /install slack  (quick MCP install)      ║
 ║                                                          ║
 ║  TIPS                                                    ║
 ║  • Be specific: "summarize Q4 sales from sheet X"        ║

@@ -91,8 +91,8 @@ Let's health-check your MCP connections:
 2. For each server, try a simple read query:
    - Slack: "What's the most recent message in #general?"
    - Google Drive: "List my 3 most recent files"
-   - Notion: "Show me my recent pages"
-   - Linear: "What issues are assigned to me?"
+   - Jira: "What issues are assigned to me?"
+   - HubSpot: "Show me my recent contacts"
 3. If any fail, use the troubleshooting guide above to fix it
 4. If you get stuck, pair up with a neighbor or ask the instructor
 

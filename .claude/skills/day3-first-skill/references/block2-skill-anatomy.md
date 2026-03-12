@@ -103,6 +103,13 @@ Show Claude EXACTLY what the output should look like.
 ```
 What should Claude do when things go wrong?
 
+### Official Skill Creator
+
+Anthropic provides an official **Skill Creator** skill that can help you build well-structured skills. You can find it at:
+https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md
+
+This is a skill that builds other skills — it understands the anatomy above and can help you structure your SKILL.md correctly.
+
 ### Common Mistakes
 
 | Mistake | Fix |

@@ -1,11 +1,11 @@
 ---
 name: day2-connect-tools
-description: "Internal Camp Day 2: Connect your work tools via MCP. Covers MCP concepts, installing servers, cross-tool queries, and troubleshooting. Use for \"Day 2\", \"MCP\", \"connect tools\", \"Slack\", \"Notion\", \"Google Drive\"."
+description: "Internal Camp Day 2: Connect your work tools via MCP. Covers MCP concepts, installing servers, cross-tool queries, and troubleshooting. Use for \"Day 2\", \"MCP\", \"connect tools\", \"Slack\", \"Google Drive\", \"Jira\", \"HubSpot\"."
 ---
 
 # Day 2: Connect Your Tools (MCP)
 
-This skill teaches participants to connect their daily work tools (Slack, Notion, Google Drive, etc.) to Claude Code using MCP, and run cross-tool queries.
+This skill teaches participants to connect their daily work tools (Slack, Google Drive, Jira, Confluence, HubSpot, Dropbox, etc.) to Claude Code using MCP, and run cross-tool queries.
 
 ---
 
@@ -45,10 +45,11 @@ When you're done, type "done" or "next" to continue.
 ## Interaction Rules
 
 - One block at a time
-- Before Block 1, ask what tools the participant uses daily (Slack, Notion, Google Drive, Linear, Jira, Figma, Salesforce, HubSpot, etc.)
+- Before Block 1, ask what tools the participant uses daily (Slack, Google Drive, Gmail, Google Calendar, Google Meet, Jira, Confluence, HubSpot, Dropbox, etc.)
 - Tailor all examples to the participant's actual tools
 - For MCP issues, check: auth tokens, permissions, server startup
 - Helpful commands to reference: `claude mcp list`, `claude mcp remove`
+- Language: English
 - Tone: patient, encouraging — MCP setup can be frustrating
 
 ---
@@ -64,9 +65,7 @@ AskUserQuestion({
       {"label": "Block 0: What is MCP?", "description": "The mental model — plugins for Claude Code"},
       {"label": "Block 1: First MCP Server", "description": "Install and test your first connection"},
       {"label": "Block 2: Popular Servers", "description": "Find servers for your specific tools"},
-      {"label": "Block 3: Cross-tool Queries", "description": "Query across 2+ tools at once"},
-      {"label": "Block 4: Troubleshooting", "description": "Fix common MCP issues"},
-      {"label": "Block 5: Homework", "description": "Connect 2 more tools on your own"}
+      {"label": "Block 3: Cross-tool Queries", "description": "Query across 2+ tools at once"}
     ],
     "multiSelect": false
   }]

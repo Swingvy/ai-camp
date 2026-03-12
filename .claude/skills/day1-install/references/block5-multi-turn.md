@@ -1,4 +1,4 @@
-# Block 5: Multi-turn Problem Solving
+# Block 5: Multi-turn Problem Solving + Web Search
 
 ## EXPLAIN
 
@@ -48,7 +48,22 @@ Claude: (creates formatted report)
 | Undo | "Go back to the previous version" |
 | Branch | "Save this, then try a completely different approach" |
 
+### Web Search — Claude's Research Power
+
+Claude Code can search the web to gather information and compile it into structured reports. This is incredibly powerful for research tasks:
+
+```
+You: "Research the top 5 project management tools for small teams.
+      Compare pricing, key features, and user reviews.
+      Create a comparison report as a markdown file."
+Claude: (searches the web, compiles findings, creates report)
+```
+
+This would normally take you 30-60 minutes of browsing, reading, and formatting. Claude does it in seconds.
+
 ## EXECUTE
+
+**Exercise 1: Multi-turn Conversation**
 
 Bring a real work problem and solve it through conversation with Claude. Here are some starting points based on common roles:
 
@@ -83,6 +98,29 @@ a summary section with totals.
 ```
 
 The goal: have at least a 5-turn conversation where you refine the output until it's genuinely useful for your work.
+
+**Exercise 2: Web Search Report**
+
+Now experience Claude's research power. Ask Claude to research a topic relevant to your work and create a structured report:
+
+```
+Research [your topic] using web search.
+Compile the findings into a structured report with:
+- Executive summary (3-4 sentences)
+- Key findings (bullet points)
+- Comparison table (if applicable)
+- Recommendations
+Save the report as research-report.md
+```
+
+Example topics by role:
+- **HR**: "Best practices for remote onboarding in 2025"
+- **Marketing**: "Top social media trends for B2B companies"
+- **Sales**: "Sales enablement tools comparison"
+- **Finance**: "Expense management software for small businesses"
+- **Ops**: "Vendor evaluation frameworks"
+
+Notice how Claude gathers information from multiple sources, organizes it, and produces a polished report — all in one request!
 
 ## QUIZ
 

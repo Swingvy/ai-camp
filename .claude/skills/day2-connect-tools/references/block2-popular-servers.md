@@ -6,34 +6,50 @@ Here's a catalog of MCP servers organized by the tools you likely use. Find your
 
 ### Communication
 
-| Tool | Install command | What you can do |
+| Tool | Install method | What you can do |
 |------|----------------|-----------------|
-| Slack | `claude mcp add slack -- npx -y @anthropic-ai/mcp-slack` | Read channels, send messages, search history |
-| Email (Gmail) | `claude mcp add gmail -- npx -y @anthropic-ai/mcp-gmail` | Read, draft, send emails |
+| Slack | `/install slack` | Read channels, send messages, search history |
+| Gmail | `/install gmail` | Read, draft, send emails |
 
-### Documents & Knowledge
+### Documents & Storage
 
-| Tool | Install command | What you can do |
+| Tool | Install method | What you can do |
 |------|----------------|-----------------|
-| Google Drive | `claude mcp add gdrive -- npx -y @anthropic-ai/mcp-gdrive` | Read/create Docs, Sheets, Slides |
-| Notion | `claude mcp add notion -- npx -y @anthropic-ai/mcp-notion` | Read/update pages, databases |
-| Confluence | `claude mcp add confluence -- npx -y @anthropic-ai/mcp-confluence` | Read/search wiki pages |
+| Google Drive | gws CLI (see setup below) | Read/create Docs, Sheets, Slides |
+| Google Docs | Part of gws CLI setup | Create and edit documents |
+| Dropbox | `claude mcp add dropbox -- npx -y @anthropic-ai/mcp-dropbox` | File storage and sharing |
+
+### Google Workspace (gws CLI Setup)
+
+Many Google tools are accessed through a single CLI called **gws**. Here's how to set it up:
+
+1. **Install gws**: `npm install -g @anthropic-ai/gws`
+2. **Authenticate**: `gws auth login`
+3. Follow the browser prompt to authorize with your Google account
+4. **Test**: `gws drive list` to verify connection
+5. **Connect to Claude**: `claude mcp add gws -- gws mcp`
+
+Once connected, Claude can access Google Drive, Google Docs, Google Sheets, Google Calendar, and Google Meet — all through this single setup.
+
+### Calendar & Meetings
+
+| Tool | Install method | What you can do |
+|------|----------------|-----------------|
+| Google Calendar | Part of gws CLI setup | View/create events |
+| Google Meet | Part of gws CLI setup | View meeting details |
 
 ### Project Management
 
-| Tool | Install command | What you can do |
+| Tool | Install method | What you can do |
 |------|----------------|-----------------|
-| Linear | `claude mcp add linear -- npx -y @anthropic-ai/mcp-linear` | Issues, projects, sprints |
 | Jira | `claude mcp add jira -- npx -y @anthropic-ai/mcp-jira` | Issues, boards, sprints |
-| GitHub | `claude mcp add github -- npx -y @anthropic-ai/mcp-github` | Issues, PRs, repos |
+| Confluence | `claude mcp add confluence -- npx -y @anthropic-ai/mcp-confluence` | Read/search wiki pages |
 
-### Other
+### CRM & Marketing
 
-| Tool | Install command | What you can do |
+| Tool | Install method | What you can do |
 |------|----------------|-----------------|
-| Calendar | `claude mcp add calendar -- npx -y @anthropic-ai/mcp-google-calendar` | View/create events |
-| Filesystem | `claude mcp add filesystem -- npx -y @anthropic-ai/mcp-filesystem` | Safe file access |
-| Web/Browser | `claude mcp add web -- npx -y @anthropic-ai/mcp-web` | Fetch web pages |
+| HubSpot | `claude mcp add hubspot -- npx -y @anthropic-ai/mcp-hubspot` | CRM, contacts, deals, marketing |
 
 ### Finding More Servers
 
@@ -47,9 +63,9 @@ MCP servers are being created constantly. To find one for your tool:
 Start with 2-3 that you use DAILY. You can always add more later. The most powerful combinations are when you connect tools that you currently copy-paste between:
 
 ```
-Slack + Google Sheets = "Summarize feedback from Slack into a spreadsheet"
-Linear + Slack = "Post sprint status to #team-updates"
-Google Drive + Notion = "Sync meeting notes from Docs to Notion"
+Slack + Google Docs = "Summarize feedback from Slack into a Google Doc"
+Jira + Slack = "Post sprint status to #team-updates"
+Google Drive + Confluence = "Sync meeting notes from Docs to Confluence"
 ```
 
 ## EXECUTE
@@ -62,7 +78,7 @@ Google Drive + Notion = "Sync meeting notes from Docs to Notion"
 ```
 "Show me my recent messages from Slack #general"
 "List my Google Drive files from this week"
-"What are my open Linear issues?"
+"What are my open Jira issues?"
 ```
 
 If you don't see your tool listed, ask me! I can help find or suggest an MCP server for it.
