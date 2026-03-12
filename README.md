@@ -34,7 +34,7 @@ Each day is a **Claude Code Skill** itself. Participants simply run the skill fo
 /day5-ship-project      # Day 5: Demo day
 ```
 
-Each session is **3 hours** with a consistent rhythm:
+Each session is **3 hours class + 1 hour additional study** with a consistent rhythm:
 - **Concept** (40 min) — Learn with live demos
 - **Hands-on** (80 min) — Build something real
 - **Share & Reflect** (30 min) — Demo to the group
