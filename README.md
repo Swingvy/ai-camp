@@ -10,7 +10,7 @@ Swingvy AI Camp is a 5-day program that teaches every team member — regardless
 
 ## Who is it for?
 
-This camp is designed for **non-engineers**: HR, Finance, Marketing, Sales, Customer Success, Operations, Legal, and PM teams. No coding experience required — just bring your laptop and your daily work problems.
+This camp is designed for **non-engineers**: Sales, Customer Success, Marketing, Operations, Finance, HR, and even the PM or QA team. No coding experience required — just bring your laptop and your daily work problems.
 
 ## Program at a Glance
 
