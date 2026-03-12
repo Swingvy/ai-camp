@@ -1,46 +1,28 @@
-# Block 2: Install Claude Code
+# Block 2: Install the Claude Desktop App
 
 ## EXPLAIN
 
-Installing Claude Code takes 2 steps:
-1. Install Node.js (the engine Claude Code runs on)
-2. Install Claude Code itself
+The Claude Desktop App is the easiest way to use Claude Code. It's a desktop application that gives you the full power of Claude Code without needing to install anything through the terminal.
 
-### Step 1: Check if Node.js is installed
+### What is the Claude Desktop App?
 
-```bash
-node --version
-```
+- A desktop application that runs Claude Code
+- Works on Mac and Windows
+- No terminal setup required — just download, install, and start
+- Includes all the features: file reading/writing, MCP connections, skills, and more
 
-If you see something like `v20.11.0` → you're good, skip to Step 2.
-If you see "command not found" → install Node.js first.
+### How to Install
 
-**Install Node.js:**
+| Step | What to do |
+|------|-----------|
+| 1. Download | Go to **claude.ai/download** and download the installer for your platform |
+| 2. Install | Open the downloaded file and follow the installation prompts |
+| 3. Launch | Open the Claude Desktop App from your Applications (Mac) or Start Menu (Windows) |
+| 4. Sign in | Log in with your Anthropic account — follow the on-screen prompts |
 
-| Platform | Command |
-|----------|---------|
-| Mac (with Homebrew) | `brew install node` |
-| Mac (without Homebrew) | Install Homebrew first: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"` then `brew install node` |
-| Windows | Download from nodejs.org and run the installer |
+### What You Should See
 
-### Step 2: Install Claude Code
-
-```bash
-npm install -g @anthropic-ai/claude-code
-```
-
-### Step 3: Launch it
-
-```bash
-cd claude-camp
-claude
-```
-
-The first time, it will ask you to log in. Follow the browser prompt — you'll authenticate with your Anthropic account or API key.
-
-### What you should see
-
-After login, you'll see something like:
+After signing in, you'll see the Claude Code interface — a text input area where you can type your instructions.
 
 ```
 ╭──────────────────────────────────────╮
@@ -53,27 +35,24 @@ After login, you'll see something like:
 
 You're in! This is where you talk to Claude.
 
+### Key Things to Know
+
+- **Type naturally** — just write what you want Claude to do in plain English
+- **Permissions** — Claude will ask before reading or writing files
+- **Exit** — type `/exit` or press `Ctrl+C` to end a session
+- **Help** — type `/help` to see available commands
+
 ## EXECUTE
 
-Run these commands in your terminal:
+Install the Claude Desktop App:
 
-```bash
-# Check Node.js
-node --version
+1. Open your browser and go to **claude.ai/download**
+2. Download the installer for your computer (Mac or Windows)
+3. Run the installer and follow the prompts
+4. Open the Claude Desktop App
+5. Sign in with your Anthropic account
 
-# Install Claude Code (if not already installed)
-npm install -g @anthropic-ai/claude-code
-
-# Go to your camp folder
-cd claude-camp
-
-# Launch Claude Code
-claude
-```
-
-Follow the login prompt in your browser. Once you see the welcome message, you're done!
-
-**Test it:** Type this to Claude:
+**Test it:** Once you're in, type this to Claude:
 
 ```
 Hello! Can you tell me what folder I'm in and list the files here?
@@ -88,20 +67,20 @@ To exit Claude Code, type `/exit` or press `Ctrl+C`.
 ```
 AskUserQuestion({
   "questions": [{
-    "question": "After installing, what command starts Claude Code?",
+    "question": "How do you install and start using Claude Code?",
     "header": "Install Quiz",
     "options": [
-      {"label": "start claude-code", "description": ""},
-      {"label": "npm run claude", "description": ""},
-      {"label": "claude", "description": ""},
-      {"label": "open claude-code", "description": ""}
+      {"label": "Run complex terminal commands to compile from source", "description": ""},
+      {"label": "Download the Claude Desktop App from claude.ai/download and sign in", "description": ""},
+      {"label": "Install a browser extension", "description": ""},
+      {"label": "Sign up on a website and use it in the browser only", "description": ""}
     ],
     "multiSelect": false
   }]
 })
 ```
 
-Correct answer: `claude`
+Correct answer: "Download the Claude Desktop App from claude.ai/download and sign in"
 
-If correct: "That's it! Just `claude`. Simple as that. And `/exit` or Ctrl+C to leave."
-If incorrect: "It's just `claude` — one word. Claude Code keeps things simple."
+If correct: "That's it! Download, install, sign in — and you're ready to go. No terminal commands needed for the installation itself."
+If incorrect: "The easiest way is to download the Claude Desktop App from claude.ai/download. Just install it like any other application, sign in, and start talking to Claude. No complex setup required!"

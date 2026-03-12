@@ -17,9 +17,9 @@ You now know how to connect tools via MCP, run cross-tool queries, and troublesh
 Tomorrow you'll build your first **Skill** — a reusable custom command. The more tools you have connected, the more powerful your skill can be.
 
 For example:
-- With just file access → you can make a skill that generates reports from local data
-- With Slack + files → you can make a skill that pulls Slack data and creates reports
-- With Slack + Google Sheets + Calendar → you can make a skill that automates your entire weekly routine
+- With Slack alone → you can make a skill that summarizes channel discussions
+- With Slack + Google Drive → you can make a skill that pulls Slack data and creates reports
+- With Slack + Jira + Google Calendar → you can make a skill that automates your entire weekly routine
 
 ### Automation Ideas Starter List
 

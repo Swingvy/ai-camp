@@ -17,16 +17,16 @@ CLAUDE.md is a special file that Claude reads at the start of every conversation
 
 # My Daily Tools
 - Slack: channels I monitor (#sales, #product-feedback)
-- Google Sheets: weekly sales tracker, expense reports
-- Notion: team wiki, project boards
+- Google Docs: meeting notes, proposals
+- Jira: project tracking, sprint boards
+- HubSpot: customer data, sales pipeline
 
 # My Common Tasks
-- Monday: compile weekly sales numbers from Google Sheets
+- Monday: compile weekly sales numbers from Google Docs
 - Wednesday: write team status update for Slack
 - Friday: review customer feedback and categorize issues
 
 # Preferences
-- Language: Korean (or English)
 - Format: bullet points over paragraphs
 - Tone: professional but friendly
 - Always use tables for comparisons
@@ -53,20 +53,67 @@ claude-camp/
 
 ## EXECUTE
 
-1. Launch Claude Code in your `claude-camp` folder
-2. Ask Claude to help you create your CLAUDE.md:
+Let's create your CLAUDE.md using a quick survey. Claude will ask you structured questions, then auto-generate the file.
+
+Instead of writing everything from scratch, answer the following survey questions. Claude will use your answers to generate a personalized CLAUDE.md.
+
+**Step 1: Answer the survey**
 
 ```
-Help me create a CLAUDE.md file. Ask me questions about:
-- My role and team
-- The tools I use daily
-- My most common tasks
-- My preferences for formatting and language
-
-Then create the CLAUDE.md file based on my answers.
+AskUserQuestion({
+  "questions": [
+    {
+      "question": "What is your role?",
+      "header": "Your Role",
+      "options": [
+        {"label": "HR / People Ops", "description": "Hiring, onboarding, people management"},
+        {"label": "Finance / Accounting", "description": "Budgets, expenses, financial reporting"},
+        {"label": "Marketing", "description": "Content, campaigns, social media, brand"},
+        {"label": "Sales / Business Development", "description": "Pipeline, deals, client relationships"}
+      ],
+      "multiSelect": false
+    },
+    {
+      "question": "Which tools do you use daily? (Select all that apply)",
+      "header": "Daily Tools",
+      "options": [
+        {"label": "Slack", "description": "Team messaging and channels"},
+        {"label": "Google Workspace (Gmail, Docs, Calendar, Meet)", "description": "Email, documents, scheduling, video calls"},
+        {"label": "Atlassian (Jira, Confluence)", "description": "Project tracking and wiki"},
+        {"label": "HubSpot", "description": "CRM, marketing, sales tools"}
+      ],
+      "multiSelect": true
+    },
+    {
+      "question": "Which additional tools do you use?",
+      "header": "More Tools",
+      "options": [
+        {"label": "Dropbox", "description": "File storage and sharing"},
+        {"label": "Google Meet", "description": "Video conferencing"},
+        {"label": "Google Calendar", "description": "Scheduling and events"},
+        {"label": "None of these", "description": "Only the tools selected above"}
+      ],
+      "multiSelect": true
+    }
+  ]
+})
 ```
 
-3. After Claude creates it, test the difference:
+**Step 2: Tell Claude your common tasks**
+
+After the survey, briefly tell Claude:
+- Your 2-3 most common weekly tasks
+- Any formatting preferences (bullet points, tables, etc.)
+
+**Step 3: Generate CLAUDE.md**
+
+Ask Claude:
+```
+Based on my survey answers and the tasks I described,
+create a CLAUDE.md file in this folder.
+```
+
+**Step 4: Test the difference**
 
 ```
 Without context: "Write a weekly summary"

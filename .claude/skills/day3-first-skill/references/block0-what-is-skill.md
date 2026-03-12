@@ -64,11 +64,24 @@ When invoked:
 
 After creating this file, typing `/greet` makes Claude do exactly this, every time.
 
+### Discover Existing Skills
+
+Before building your own, explore what others have already created. Visit **https://skills.sh/** — a directory of community-built skills you can browse and install.
+
+This is like an app store for Claude Code skills. You might find:
+- Skills similar to what you want to build (use as inspiration)
+- Ready-to-use skills that solve your exact problem
+- Examples of well-structured SKILL.md files to learn from
+
 ## EXECUTE
 
-Let's create a simple demo skill together:
+**Step 1: Explore existing skills**
 
-1. In your `claude-camp` folder, ask Claude:
+Visit https://skills.sh/ in your browser. Browse through the available skills and find 2-3 that look interesting or relevant to your work.
+
+**Step 2: Create a simple demo skill**
+
+In your `claude-camp` folder, ask Claude:
 
 ```
 Create a skill called "daily-checklist" that:
@@ -80,12 +93,12 @@ Create a skill called "daily-checklist" that:
 Create it as .claude/skills/daily-checklist/SKILL.md
 ```
 
-2. After Claude creates it, test it:
+After Claude creates it, test it:
 ```
 /daily-checklist
 ```
 
-3. See how the skill works. Does it do what you expected?
+See how the skill works. Does it do what you expected?
 
 ## QUIZ
 

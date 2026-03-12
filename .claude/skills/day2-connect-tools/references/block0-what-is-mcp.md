@@ -4,7 +4,7 @@
 
 MCP stands for **Model Context Protocol**. Think of it as **plugins for Claude Code**.
 
-Without MCP, Claude can only work with files on your computer. With MCP, Claude can reach into your work tools — Slack, Notion, Google Drive, Linear, and more.
+Without MCP, Claude can only work with files on your computer. With MCP, Claude can reach into your work tools — Slack, Google Drive, Jira, Confluence, HubSpot, and more.
 
 ### The Mental Model
 
@@ -15,8 +15,8 @@ Before MCP:
 After MCP:
   You ←→ Claude Code ←→ Slack
                       ←→ Google Drive
-                      ←→ Notion
-                      ←→ Calendar
+                      ←→ Jira
+                      ←→ HubSpot
                       ←→ (any tool with an MCP server)
 ```
 
@@ -26,7 +26,7 @@ After MCP:
 |--------------|-----------------------------|
 | "What's happening in #product-feedback?" | Reads your Slack channel and summarizes |
 | "Create a Google Doc with today's meeting notes" | Creates an actual Google Doc in your Drive |
-| "What are my open tasks in Linear?" | Fetches your assigned issues |
+| "What are my open issues in Jira?" | Fetches your assigned Jira issues |
 | "Block my calendar tomorrow 2-3pm for deep work" | Creates a calendar event |
 
 ### How It Works (Simple Version)
@@ -69,7 +69,7 @@ AskUserQuestion({
     "header": "MCP Concept Quiz",
     "options": [
       {"label": "Makes Claude Code faster", "description": ""},
-      {"label": "Connects Claude Code to external tools like Slack, Notion, and Google Drive", "description": ""},
+      {"label": "Connects Claude Code to external tools like Slack, Google Drive, and Jira", "description": ""},
       {"label": "Adds a graphical interface to Claude Code", "description": ""},
       {"label": "Translates Claude Code to different languages", "description": ""}
     ],
@@ -78,7 +78,7 @@ AskUserQuestion({
 })
 ```
 
-Correct answer: "Connects Claude Code to external tools like Slack, Notion, and Google Drive"
+Correct answer: "Connects Claude Code to external tools like Slack, Google Drive, and Jira"
 
-If correct: "Exactly! MCP is like giving Claude Code arms that can reach into your work tools. Without it, Claude only sees your local files. With it, Claude can read Slack, create Google Docs, check your calendar, and more."
-If incorrect: "MCP connects Claude Code to your external work tools. Think of it as plugins — each MCP server is a bridge between Claude and one of your tools (Slack, Notion, Google Drive, etc.)."
+If correct: "Exactly! MCP is like giving Claude Code arms that can reach into your work tools. Without it, Claude only sees your local files. With it, Claude can read Slack, create Google Docs, check your Jira issues, and more."
+If incorrect: "MCP connects Claude Code to your external work tools. Think of it as plugins — each MCP server is a bridge between Claude and one of your tools (Slack, Google Drive, Jira, etc.)."

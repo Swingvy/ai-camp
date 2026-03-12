@@ -1,10 +1,26 @@
-# Block 1: Terminal Basics
+# Block 1: GUI vs CLI — Two Ways to Talk to Your Computer
 
 ## EXPLAIN
 
-The terminal is just a text-based way to talk to your computer. Instead of clicking icons, you type commands. That's it.
+There are two ways to interact with your computer:
 
-**Why terminal?** Because Claude Code lives here. Once you're comfortable with 6 commands, you'll never feel lost.
+**GUI (Graphical User Interface)** — what you're used to
+- Clicking icons, dragging files, using menus
+- Examples: Finder, Chrome, Slack, Microsoft Word
+- Visual, intuitive, point-and-click
+
+**CLI (Command Line Interface)** — what developers use
+- Typing text commands in a terminal window
+- Examples: Terminal (Mac), Command Prompt (Windows)
+- Fast, powerful, automatable
+
+### Why does this matter?
+
+Claude Code works through a **CLI-style interface** inside the Claude Desktop App. Instead of clicking buttons, you type natural language instructions. Understanding the CLI concept will help you feel comfortable.
+
+### The Terminal — Your First CLI
+
+The terminal is just a text-based way to talk to your computer. Instead of clicking icons, you type commands. That's it.
 
 ### The 6 Commands You Need
 
@@ -42,7 +58,7 @@ You type after the `%` and press Enter.
 
 ## EXECUTE
 
-Open your terminal and try these commands in order:
+Let's experience the CLI! Open your terminal and try these commands in order:
 
 ```bash
 # 1. Where am I?
@@ -74,20 +90,20 @@ Try each one and see what happens. Don't worry — these commands are completely
 ```
 AskUserQuestion({
   "questions": [{
-    "question": "You're in the 'Documents' folder and want to go back to your home folder. Which command do you use?",
-    "header": "Terminal Quiz",
+    "question": "What is the difference between GUI and CLI?",
+    "header": "GUI vs CLI Quiz",
     "options": [
-      {"label": "ls", "description": ""},
-      {"label": "cd ..", "description": ""},
-      {"label": "pwd", "description": ""},
-      {"label": "mkdir home", "description": ""}
+      {"label": "GUI uses visual elements (icons, menus, clicks); CLI uses text commands", "description": ""},
+      {"label": "GUI is for Macs, CLI is for Windows", "description": ""},
+      {"label": "GUI is newer, CLI is outdated", "description": ""},
+      {"label": "There is no difference", "description": ""}
     ],
     "multiSelect": false
   }]
 })
 ```
 
-Correct answer: `cd ..`
+Correct answer: "GUI uses visual elements (icons, menus, clicks); CLI uses text commands"
 
-If correct: "Right! `cd ..` goes up one level. If you want to go straight home from anywhere, you can also type `cd ~`."
-If incorrect: Explain each option — `ls` lists files, `pwd` shows location, `mkdir` creates a folder. `cd ..` is the one that moves you up.
+If correct: "Exactly! GUI = Graphical (clicking icons), CLI = Command Line (typing commands). Claude Code uses a CLI-style interface where you type instructions in natural language. You'll get comfortable with it quickly!"
+If incorrect: "GUI (Graphical User Interface) is the visual, click-based way you normally use your computer — icons, menus, windows. CLI (Command Line Interface) is text-based — you type commands instead of clicking. Claude Code works through a CLI-style interface, but don't worry — you'll type in plain English, not technical commands."

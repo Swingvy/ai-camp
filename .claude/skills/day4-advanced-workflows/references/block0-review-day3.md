@@ -15,23 +15,23 @@ Yesterday you:
 
 ### Today's Agenda
 
-Today we level up with 3 power techniques:
+Today we level up with these techniques:
 
 | Technique | What it does | Analogy |
 |-----------|-------------|---------|
-| **Subagents** | Do multiple things in parallel | Hiring 2 assistants instead of 1 |
 | **Chaining** | Connect skills into a pipeline | Assembly line — each station does one job |
-| **Hooks** | Trigger actions automatically | Doorbell — rings automatically when someone arrives |
+| **Enhancement** | Add validation, formatting, error handling | Polishing a rough diamond |
+| **Team Sharing** | Share skills across your team via git | A shared recipe book everyone can use |
 
-By the end of today, your simple skill will become a multi-step workflow.
+By the end of today, your simple skill will become a polished, shareable workflow.
 
 ## EXECUTE
 
 1. Run your Day 3 skill one more time: `/your-skill-name`
 2. While it runs, think about:
-   - What takes the longest? (could subagents speed it up?)
    - What do you do AFTER the skill finishes? (could another skill handle that?)
-   - What do you always check manually? (could a hook automate that check?)
+   - What's missing from the output? (could better formatting help?)
+   - What errors do you hit? (could error handling improve it?)
 
 3. Share with the group: "My skill does X, and the thing I wish it also did is Y."
 
