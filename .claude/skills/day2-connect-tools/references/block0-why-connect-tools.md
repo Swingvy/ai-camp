@@ -29,34 +29,36 @@ After connecting tools:
 
 ### How Do Connections Work?
 
-Claude Code connects to external tools in several ways:
+Claude Desktop App has a built-in **Connectors** feature that makes connecting tools simple:
 
-| Method | What it is | Example |
-|--------|-----------|---------|
-| **Plugin** | One-command install, easiest | `claude plugin install slack` |
-| **MCP Server** | A connector that translates between Claude and a tool | `claude mcp add atlassian ...` |
-| **CLI Tool + Skill** | A command-line tool that Claude calls directly | Google Workspace (`gws`) |
+1. Open **Settings** (gear icon) in your Claude Desktop App
+2. Go to **Connectors** → **Browse Connectors**
+3. Find the tool you want → Click **Connect**
+4. Authorize access in the browser popup
 
-You don't need to understand the technical details — just follow the steps for each tool.
+That's it! No Terminal commands needed. The Desktop App handles everything for you.
 
 ### Today's Plan
 
 We'll connect **4 tools** step by step:
 
-| Step | Tool | Method | Difficulty |
-|------|------|--------|------------|
-| 1 | Slack | Plugin | Easy |
-| 2 | Jira & Confluence | MCP Server | Easy |
-| 3 | Google Workspace | CLI Tool | Medium |
-| 4 | HubSpot (Optional) | MCP + OAuth | Medium |
+| Step | Tool | Difficulty |
+|------|------|------------|
+| 1 | Slack | Easy |
+| 2 | Jira & Confluence | Easy |
+| 3 | Google Workspace (Calendar, Drive, Docs, Gmail) | Easy |
+| 4 | HubSpot (Optional) | Easy |
 
 ## EXECUTE
 
-Let's see what connections you already have (probably none yet, and that's fine).
+Let's take a look at the Connectors screen.
 
-In **Claude Desktop App**, type `/mcp` and press Enter. This shows your current connections.
+📱 **Desktop App:**
+1. Click the **Settings** icon (gear icon) in your Claude Desktop App
+2. Go to **Connectors**
+3. Browse what's available
 
-If nothing appears, that's expected! We'll connect your first tool in the next block.
+If you see a list of connectors, you're in the right place! We'll connect your first tool in the next block.
 
 ---
 👆 Try this yourself now.

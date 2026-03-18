@@ -45,6 +45,7 @@ When you're done, type **"next"** or **"quiz"** to continue.
 | 1 | `references/block2-chaining.md` | Chaining skills into workflows |
 | 2 | `references/block4-enhance-skill.md` | Enhance your skill with techniques |
 | 3 | `references/block5-team-repo.md` | Team skills repository + sharing |
+| 4 | `references/block4-homework.md` | Homework — prepare for Demo Day |
 
 ---
 
