@@ -47,6 +47,7 @@ When you're done, type **"next"** or **"quiz"** to continue.
 | 3 | `references/block3-write-skill.md` | Write your skill with Custom Skill Builder |
 | 4 | `references/block4-test-iterate.md` | Test, break, fix, improve |
 | 5 | `references/block5-share.md` | Demo to the group |
+| 6 | `references/block6-homework.md` | Homework — tasks to practice before Day 4 |
 
 ---
 

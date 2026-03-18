@@ -1,4 +1,4 @@
-# Block 5: Cross-tool Queries + Homework
+# Block 6: Cross-tool Queries + Homework
 
 ## EXPLAIN
 
@@ -60,22 +60,16 @@ Claude does all 3 automatically.
 
 By now you should have:
 
-| Tool | Method | Status |
-|------|--------|--------|
-| Slack | Plugin | Connected |
-| Jira & Confluence | MCP Server | Connected |
-| Google Workspace | CLI Tool (gws) | Connected |
-| HubSpot | MCP + OAuth | Optional |
+| Tool | Status |
+|------|--------|
+| Slack | Connected via Connectors |
+| Jira & Confluence | Connected via Connectors |
+| Google Workspace | Connected via Connectors |
+| HubSpot | Optional — Connected via Connectors |
 
 ### Managing Your Connections
 
-📱 **Desktop App:** Type `/mcp` to view and manage all your connections, re-authenticate, or remove a connection.
-
-💻 **Terminal** (alternative):
-```bash
-claude mcp list          # See all your connections
-claude mcp remove <name> # Remove a connection
-```
+📱 **Desktop App:** Go to **Settings** → **Connectors** to view and manage all your connections. You can disconnect and reconnect any tool from here.
 
 ---
 
@@ -135,7 +129,7 @@ AskUserQuestion({
     "question": "What's the most important thing to bring to Day 3?",
     "header": "Homework Check",
     "options": [
-      {"label": "A list of every tool connection method", "description": ""},
+      {"label": "A list of every connector available", "description": ""},
       {"label": "Working tool connections and 3 automation ideas from your real work", "description": ""},
       {"label": "A finished automation project", "description": ""},
       {"label": "Nothing — Day 3 starts fresh", "description": ""}

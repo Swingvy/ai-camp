@@ -2,77 +2,48 @@
 
 ## EXPLAIN
 
-Google Workspace (Calendar, Drive, Docs, Sheets, Gmail) uses a different approach — a **CLI tool** called `gws`. This requires a few more steps in Terminal, but once set up, it gives Claude access to all your Google tools at once.
+Google Workspace includes **Calendar, Drive, Docs, Sheets, and Gmail**. You can connect each one through the Connectors menu — the same way you connected Slack and Atlassian.
 
 ### Step-by-Step Guide
 
-#### Step 1: Create the client_secret.json file
+#### Step 1: Open Connectors
 
-📱 **Desktop App:** Type this query (requires Atlassian connection from Block 3):
+📱 **Desktop App:**
+1. Click the **Settings** icon (gear icon)
+2. Go to **Connectors** → **Browse Connectors**
 
-```
-create ~/.config/gws/client_secret.json file from confluence document ID: 4734844930
-```
+#### Step 2: Connect Google Tools
 
-This fetches the Google OAuth credentials needed for authentication.
+📱 **Desktop App:**
 
-#### Step 2: Install prerequisites
+You'll see several Google connectors available. Connect the ones you use:
 
-💻 **Terminal:** You need Homebrew and Node.js. Open your Terminal app and run these commands one by one:
+| Connector | What it enables |
+|-----------|----------------|
+| **Google Calendar** | View your schedule, create events, check availability |
+| **Google Drive** | Browse files, search documents |
+| **Google Docs** | Read and create documents |
+| **Google Sheets** | Read and edit spreadsheets |
+| **Gmail** | Read emails, draft replies, search inbox |
 
-```bash
-# Install Homebrew (Mac package manager) — skip if you already have it
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
+For each one:
+1. Find the connector in the list
+2. Click **Connect**
+3. Authorize with your Google account in the browser popup
 
-```bash
-# Install Node.js — skip if you already have it
-brew install node
-```
+> **Tip:** Start with **Google Calendar** — it's the quickest to verify since you can immediately ask about your schedule.
 
-To check if you already have them:
-```bash
-brew --version    # Should show a version number
-node --version    # Should show a version number (v18 or higher)
-```
+#### Step 3: Test it!
 
-#### Step 3: Install the Google Workspace CLI
-
-💻 **Terminal:**
-
-```bash
-npm install -g @googleworkspace/cli
-```
-
-#### Step 4: Add as a Claude Code skill
-
-💻 **Terminal:**
-
-```bash
-npx skills add https://github.com/googleworkspace/cli -y
-```
-
-#### Step 5: Authenticate with Google
-
-💻 **Terminal:**
-
-```bash
-gws auth login
-```
-
-It will first ask you to select an OAuth scope. **Just press Enter** to confirm the recommended setting.
-
-Then it will display a URL. **Copy the URL and open it in your browser.** Log in with your Google account and authorize access.
-
-#### Step 6: Test it in Claude Desktop App!
-
-📱 **Desktop App:** Go back to your Claude Desktop App (restart it if needed) and try:
+📱 **Desktop App:** Try these queries:
 
 ```
-What's my upcoming schedule?
+What's my schedule for today?
+Show my recent Google Drive files
+Do I have any unread emails?
 ```
 
-If Claude shows your Google Calendar events — Google Workspace is connected!
+If Claude shows your calendar events, files, or emails — Google Workspace is connected!
 
 ### What You Can Do
 
@@ -88,23 +59,18 @@ If Claude shows your Google Calendar events — Google Workspace is connected!
 
 | Problem | Solution |
 |---------|----------|
-| `brew` not found | Run the Homebrew install command from Step 2 |
-| `node` version too old | `brew upgrade node` |
-| `npm install` fails | Try `sudo npm install -g @googleworkspace/cli` |
-| Auth URL won't open | Copy the URL manually and paste it in your browser |
-| "Permission denied" | Make sure you authorized with the right Google account |
-| `client_secret.json` missing | Run Step 1 again in Desktop App to create it from the Confluence doc (requires Block 3 Atlassian connection) |
+| Google connectors not showing | Make sure Claude Code is enabled (Block 1) |
+| Auth fails | Make sure you're using your work Google account |
+| "Permission denied" | You may need to authorize additional scopes — try disconnecting and reconnecting |
+| Can't find files | Be specific with file names or try searching by keyword |
 
 ## EXECUTE
 
-Follow the 6 steps above:
+Follow the steps above:
 
-1. 📱 **Desktop App:** `create ~/.config/gws/client_secret.json file from confluence document ID: 4734844930`
-2. 💻 **Terminal:** Install Homebrew and Node.js (if not already installed)
-3. 💻 **Terminal:** `npm install -g @googleworkspace/cli`
-4. 💻 **Terminal:** `npx skills add https://github.com/googleworkspace/cli -y`
-5. 💻 **Terminal:** `gws auth login` → copy URL → open in browser → authorize
-6. 📱 **Desktop App:** Try `What's my upcoming schedule?`
+1. 📱 **Settings** → **Connectors** → **Browse Connectors**
+2. 📱 Connect at least **Google Calendar** and **one other** Google tool
+3. 📱 Try `What's my schedule for today?`
 
 ---
 👆 Try this yourself now.
@@ -115,19 +81,20 @@ When you're done, type **"next"** or **"quiz"** to continue.
 ```
 AskUserQuestion({
   "questions": [{
-    "question": "Which connection method does Google Workspace use?",
+    "question": "How do you connect Google Workspace tools to Claude?",
     "header": "Google Workspace Quiz",
     "options": [
-      {"label": "Plugin", "description": "A one-command install method"},
-      {"label": "MCP Server", "description": "A connector added via claude mcp add"},
-      {"label": "CLI Tool", "description": "A command-line tool installed separately"}
+      {"label": "Settings → Connectors → Browse Connectors → find each Google tool → Connect", "description": ""},
+      {"label": "Install a CLI tool in Terminal", "description": ""},
+      {"label": "Copy an API key from Google Cloud Console", "description": ""},
+      {"label": "Google tools are automatically connected", "description": ""}
     ],
     "multiSelect": false
   }]
 })
 ```
 
-Correct answer: "CLI Tool"
+Correct answer: "Settings → Connectors → Browse Connectors → find each Google tool → Connect"
 
-If correct: "Exactly! Google Workspace uses a CLI tool called `gws`. So now you've seen all three methods: Slack = plugin, Atlassian = MCP server, Google = CLI tool. The method doesn't matter much — once connected, you just ask Claude in plain language in your Desktop App."
-If incorrect: "Google Workspace uses the **CLI tool** method — a separate tool called `gws` that you install in Terminal and authenticate with. Each tool connects differently (plugin, MCP, CLI), but once connected, you interact with all of them the same way in your Desktop App."
+If correct: "Exactly! Just like Slack and Atlassian, Google tools connect through Settings → Connectors. Find each Google tool you want, click Connect, and authorize. Same simple process for everything!"
+If incorrect: "Google Workspace tools connect the same way as everything else — through **Settings → Connectors → Browse Connectors**. Find Google Calendar, Gmail, Drive, etc., click Connect, and authorize with your Google account. No CLI tools needed!"

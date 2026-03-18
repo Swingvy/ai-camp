@@ -75,6 +75,7 @@ When you're done, type **"next"** or **"quiz"** to continue.
 | 4 | `references/block4-claude-md.md` | CLAUDE.md — teach Claude about you |
 | 5 | `references/block5-multi-turn.md` | Multi-turn problem solving + web search |
 | 6 | `references/block6-plan-mode.md` | Introduction to Plan Mode |
+| 7 | `references/block7-homework.md` | Homework — tasks to practice before Day 2 |
 
 ---
 

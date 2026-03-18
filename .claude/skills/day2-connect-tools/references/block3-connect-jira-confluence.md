@@ -2,28 +2,22 @@
 
 ## EXPLAIN
 
-Now let's connect **Jira and Confluence** — both are Atlassian products, so we connect them together through a single MCP server.
+Now let's connect **Jira and Confluence** — both are Atlassian products, so one connection gives you access to both!
 
 ### Step-by-Step Guide
 
-#### Step 1: Add the Atlassian MCP server
-
-💻 **Terminal:** Open your Terminal app and run:
-
-```bash
-claude mcp add --transport http atlassian https://mcp.atlassian.com/v1/mcp
-```
-
-This tells Claude Code to connect to Atlassian's official MCP server.
-
-#### Step 2: Authenticate in Claude Desktop App
+#### Step 1: Open Connectors
 
 📱 **Desktop App:**
-1. Go back to your Claude Desktop App (restart it if it was already open)
-2. Type `/mcp` and press Enter
-3. Select **`atlassian`** from the list
-4. Select **"Authenticate"**
-5. A browser window will open — log in to your Atlassian account and authorize access
+1. Click the **Settings** icon (gear icon)
+2. Go to **Connectors** → **Browse Connectors**
+
+#### Step 2: Find and Connect Atlassian
+
+📱 **Desktop App:**
+1. Search for or scroll to **Atlassian** (this covers both Jira and Confluence)
+2. Click **Connect**
+3. A browser window will open — log in to your Atlassian account and authorize access
 
 #### Step 3: Test it!
 
@@ -33,6 +27,8 @@ This tells Claude Code to connect to Atlassian's official MCP server.
 What are my open Jira issues?
 Search Confluence for "onboarding guide"
 ```
+
+If Claude shows your Jira issues or finds Confluence pages — Atlassian is connected!
 
 ### What You Can Do
 
@@ -45,7 +41,7 @@ Search Confluence for "onboarding guide"
 
 | Problem | Solution |
 |---------|----------|
-| "Server not found" | Double-check the URL — copy the full command exactly |
+| Atlassian not in Connectors | Make sure Claude Code is enabled (Block 1) |
 | Auth fails | Make sure you're logging into the right Atlassian workspace |
 | "No permission" | Ask your admin if API access is enabled |
 | Can't find pages | Try using the page ID instead of the title |
@@ -54,9 +50,9 @@ Search Confluence for "onboarding guide"
 
 Follow the 3 steps above:
 
-1. 💻 **Terminal:** `claude mcp add --transport http atlassian https://mcp.atlassian.com/v1/mcp`
-2. 📱 **Desktop App:** `/mcp` → select `atlassian` → Authenticate
-3. 📱 **Desktop App:** Try `What are my open Jira issues?`
+1. 📱 **Settings** → **Connectors** → **Browse Connectors**
+2. 📱 Find **Atlassian** → Click **Connect** → Authorize in browser
+3. 📱 Try `What are my open Jira issues?`
 
 ---
 👆 Try this yourself now.
@@ -67,19 +63,20 @@ When you're done, type **"next"** or **"quiz"** to continue.
 ```
 AskUserQuestion({
   "questions": [{
-    "question": "Which connection method do Jira & Confluence use?",
+    "question": "How many connectors do you need for Jira AND Confluence?",
     "header": "Atlassian Quiz",
     "options": [
-      {"label": "Plugin", "description": "A one-command install method"},
-      {"label": "MCP Server", "description": "A connector added via claude mcp add"},
-      {"label": "CLI Tool", "description": "A command-line tool installed separately"}
+      {"label": "One — the Atlassian connector covers both", "description": ""},
+      {"label": "Two — one for Jira and one for Confluence", "description": ""},
+      {"label": "Three — Jira, Confluence, and Atlassian separately", "description": ""},
+      {"label": "None — they're already built into Claude", "description": ""}
     ],
     "multiSelect": false
   }]
 })
 ```
 
-Correct answer: "MCP Server"
+Correct answer: "One — the Atlassian connector covers both"
 
-If correct: "Correct! Jira & Confluence connect through an MCP server — different from Slack's plugin approach. The nice thing is one MCP server gives you both Jira and Confluence!"
-If incorrect: "Jira & Confluence use the **MCP server** method. Unlike Slack's plugin, you add an MCP server with `claude mcp add` in Terminal. One connection covers both tools."
+If correct: "Correct! One Atlassian connector gives you both Jira and Confluence. That's the nice thing about Atlassian products — they share the same connection."
+If incorrect: "You only need **one** connector — the Atlassian connector covers both Jira and Confluence. Since they're both Atlassian products, a single connection handles both!"

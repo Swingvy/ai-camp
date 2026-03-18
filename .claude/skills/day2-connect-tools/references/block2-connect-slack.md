@@ -2,28 +2,22 @@
 
 ## EXPLAIN
 
-Let's connect your first tool — **Slack**. This is the easiest one because it uses a simple plugin install.
+Let's connect your first tool — **Slack**. This is the easiest one because it's available right in the Connectors menu.
 
 ### Step-by-Step Guide
 
-#### Step 1: Install the Slack plugin
-
-💻 **Terminal:** Open your Terminal app and run:
-
-```bash
-claude plugin install slack
-```
-
-This downloads and sets up the Slack connector automatically.
-
-#### Step 2: Authenticate in Claude Desktop App
+#### Step 1: Open Connectors
 
 📱 **Desktop App:**
-1. Go back to your Claude Desktop App
-2. Type `/mcp` and press Enter
-3. Select **`plugin:slack:slack`** from the list
-4. Select **"Authenticate"**
-5. A browser window will open — log in to your Slack workspace and authorize access
+1. Click the **Settings** icon (gear icon)
+2. Go to **Connectors** → **Browse Connectors**
+
+#### Step 2: Find and Connect Slack
+
+📱 **Desktop App:**
+1. Search for or scroll to **Slack**
+2. Click **Connect**
+3. A browser window will open — log in to your Slack workspace and authorize access
 
 #### Step 3: Test it!
 
@@ -35,31 +29,31 @@ What's the most recent message in #swingvy_general?
 
 If Claude reads your Slack channel and shows you the message — congratulations, Slack is connected!
 
+### What You Can Do with Slack
+
+| Action | Example query |
+|--------|--------------|
+| Read channels | "What's happening in #engineering?" |
+| Search messages | "Find messages about the launch in #marketing" |
+| Send messages | "Send a message to #team-updates saying..." |
+| Summarize | "Summarize the last week of #product-feedback" |
+
 ### Troubleshooting
 
 | Problem | Solution |
 |---------|----------|
-| Plugin install fails | Check your internet connection, try again |
+| Slack not in Connectors list | Make sure Claude Code is enabled (Block 1) |
 | Authentication page won't open | Copy the URL and paste in your browser |
 | "Channel not found" | Check the exact channel name (case-sensitive) |
 | Can't read messages | You may need to be a member of that channel |
-
-### Useful Commands
-
-💻 **Terminal:** You can manage connections from Terminal if needed:
-
-```bash
-claude mcp list          # Verify Slack appears in the list
-claude mcp remove <name> # Remove if you need to start over
-```
 
 ## EXECUTE
 
 Follow the 3 steps above:
 
-1. 💻 **Terminal:** `claude plugin install slack`
-2. 📱 **Desktop App:** `/mcp` → select `plugin:slack:slack` → Authenticate
-3. 📱 **Desktop App:** Try `What's the most recent message in #swingvy_general?`
+1. 📱 **Settings** → **Connectors** → **Browse Connectors**
+2. 📱 Find **Slack** → Click **Connect** → Authorize in browser
+3. 📱 Try `What's the most recent message in #swingvy_general?`
 
 ---
 👆 Try this yourself now.
@@ -70,19 +64,20 @@ When you're done, type **"next"** or **"quiz"** to continue.
 ```
 AskUserQuestion({
   "questions": [{
-    "question": "Which connection method does Slack use?",
+    "question": "How do you connect Slack to Claude?",
     "header": "Slack Quiz",
     "options": [
-      {"label": "Plugin", "description": "A one-command install method"},
-      {"label": "MCP Server", "description": "A connector added via claude mcp add"},
-      {"label": "CLI Tool", "description": "A command-line tool installed separately"}
+      {"label": "Settings → Connectors → Browse Connectors → Slack → Connect", "description": ""},
+      {"label": "Type a command in Terminal", "description": ""},
+      {"label": "Download a separate Slack plugin", "description": ""},
+      {"label": "Copy-paste an API key into Claude", "description": ""}
     ],
     "multiSelect": false
   }]
 })
 ```
 
-Correct answer: "Plugin"
+Correct answer: "Settings → Connectors → Browse Connectors → Slack → Connect"
 
-If correct: "Right! Slack uses the plugin method — the simplest way to connect a tool. Just one command to install, then authenticate through `/mcp` in your Desktop App."
-If incorrect: "Slack uses the **plugin** method — it's the easiest of the three. Plugins are one-command installs that handle all the setup for you."
+If correct: "Right! All tool connections go through Settings → Connectors in the Desktop App. No Terminal commands needed — just find the tool and click Connect. Easy!"
+If incorrect: "Slack (and all other tools) connect through **Settings → Connectors → Browse Connectors** in the Desktop App. Just find Slack, click Connect, and authorize. No Terminal needed!"
