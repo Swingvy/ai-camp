@@ -1,40 +1,114 @@
 ---
 name: daily-news
-description: "Greet the user with today's date and surface 5 top news items about AI agents being used for software testing — tools, frameworks, case studies, and announcements."
+description: "Ask the user for their industry and department, then surface 5 personalized news items from the past week. Use for 'weekly news', 'news digest', 'what's new in', 'latest news about'."
 ---
 
-# Daily News: AI Agents for Software Testing
+# Weekly News Digest
 
 ## INPUT
 - Today's date (from system)
-- Live web search results about AI agents used in software testing
+- Industry field (ask the user)
+- Department (ask the user)
+- Live web search results
 
 ## PROCESS
 
-**Step 1: Greet the user**
-Print a friendly greeting with today's date:
+**Step 1: Check for saved preferences**
+Check if `~/.claude/daily-news-prefs.json` exists and is readable.
+
+- **If it exists:** Read the file, load `industry` and `department`, then ask:
+  ```
+  👋 Welcome back! Last time you chose:
+     Industry:   [saved industry]
+     Department: [saved department]
+
+  Use the same preferences, or change them?
+  ```
+  - If "Same" → skip to Step 4 using saved values
+  - If "Change" → proceed to Step 2
+
+- **If it does not exist:** Proceed to Step 2 (first-time setup)
+
+**Step 2: Ask for industry field**
+Ask the user to select their industry:
+- SaaS / B2B Software
+- FinTech / Finance
+- HealthTech / Healthcare
+- E-commerce / Retail
+- EdTech / Education
+- HR Tech / People Ops
+- Logistics / Supply Chain
+- Other (let them type their own)
+
+**Step 3: Ask for department**
+Ask the user to select their department:
+- CEO / Executive
+- Sales
+- Marketing
+- Customer Success (CS)
+- Engineering
+- Product Management (PM)
+- QA
+
+**Step 3b: Ask about scheduling (first run only)**
+"Would you like this digest delivered automatically on a schedule?"
+- Yes → ask: "What time? (e.g. 9AM)" and "Which days? (e.g. every Monday / weekdays / Mon,Wed,Fri)"
+  - Convert to a cron expression and create a scheduled task using the `create_scheduled_task` tool
+  - Confirm: "Done! I'll send your news digest at [time] on [days]."
+- No / Skip → continue without scheduling
+
+Then save the chosen values to `~/.claude/daily-news-prefs.json`:
+```json
+{
+  "industry": "[chosen industry]",
+  "department": "[chosen department]"
+}
+```
+
+**Step 4: Suggest topics based on industry + department**
+Combine the industry and department to suggest 3 highly relevant news topics.
+
+Use this logic:
+- Start with the department's base topics (see below)
+- Prefix or filter them with the chosen industry context
+
+**Department base topics:**
+
+| Department | Base Topics |
+|---|---|
+| CEO / Executive | AI strategy & business trends · Competitor intelligence · AI productivity tools for leaders |
+| Sales | AI sales tools & CRM automation · Revenue intelligence · Outreach & pipeline AI |
+| Marketing | AI content & copywriting tools · Social media AI · Growth analytics & SEO AI |
+| Customer Success | AI support & chatbot tools · Customer feedback automation · CS AI tools & trends |
+| Engineering | AI coding assistants · DevOps & CI/CD automation · Developer tools & framework releases |
+| Product Management (PM) | AI product management tools · Roadmap & prioritization AI · Product analytics |
+| QA | AI agents for software testing · Self-healing test automation · QA tools & framework releases |
+
+**Examples of combined topics:**
+- FinTech + QA → "AI agents for FinTech software testing", "Compliance test automation in FinTech", "Self-healing tests for payment systems"
+- HealthTech + Engineering → "AI coding tools for HealthTech", "HIPAA-compliant DevOps automation", "HealthTech developer tools 2026"
+- SaaS + Marketing → "AI content tools for SaaS marketing", "SaaS growth analytics AI", "Social media AI for SaaS"
+
+Present the 3 combined suggestions as options and let them pick one (or enter their own).
+
+**Step 5: Greet the user**
+Print a friendly greeting with today's date and their chosen topic:
 ```
 Good morning! Today is [Day], [Month DD YYYY].
-Here's your daily digest: AI Agents for Software Testing ☕
+Here's your weekly digest: [TOPIC] ☕
 ```
 
-**Step 2: Search for news**
-Run these 3 searches in parallel using the WebSearch tool:
-1. `AI agent software testing automation [current year]`
-2. `autonomous QA agent test generation self-healing tests`
-3. `AI agent QA engineer testing tool announcement site:techcrunch.com OR site:thenewstack.io OR site:twitter.com`
+**Step 5: Search for news**
+Run these 4 searches in parallel using the WebSearch tool:
+1. `[TOPIC] news [current year]`
+2. `[TOPIC] announcement release [current year]`
+3. `[TOPIC] tool update case study [current year]`
+4. `[TOPIC] site:twitter.com OR site:x.com OR site:threads.net`
 
-Focus only on news about **AI agents used in software testing**, including:
-- AI agents that write, run, or fix tests autonomously
-- Self-healing test frameworks
-- Tools or vendors adding agentic QA capabilities
-- Case studies of AI agents augmenting or replacing QA engineers
+**Step 6: Pick the 5 best results**
+Select the 5 most recent and relevant items. Prefer results from the last 7 days; fall back to 30 days if needed. Include at least 1 from X or Threads if available.
 
-**Step 3: Pick the 5 best results**
-Select the 5 most recent and relevant items across all searches.
-Prefer results from the last 24–48 hours when available.
-
-**Step 4: Format the digest**
+**Step 7: Format the digest**
 Present each item as:
 ```
 [N]. 📰 [HEADLINE]
@@ -42,18 +116,24 @@ Present each item as:
    Summary: [1–2 sentence plain-language summary]
    Link: [URL]
 ```
+Label X posts as `🐦 X (Twitter)` and Threads posts as `🧵 Threads`.
 
-**Step 5: Close with a takeaway**
-Add one closing line:
+**Step 8: Close with a takeaway**
 ```
-💡 Today's takeaway: [one sentence connecting a theme across the 5 items]
+💡 This week's takeaway: [one sentence connecting a theme across the 5 items]
 ```
+
+**Step 9: Send via Slack DM**
+Look up the current user's Slack ID dynamically via the Slack MCP tool (search by name or email), then send the full digest as a DM to that user.
 
 ## OUTPUT
-A scannable 5-item digest of today's most relevant news on AI agents for software testing, with sources, summaries, links, and a closing insight.
+A scannable 5-item weekly digest personalized by industry + department, displayed in the terminal AND sent as a Slack DM.
 
 ## RULES
 - Always fetch live results — never make up or hallucinate news
-- If fewer than 5 fresh results exist, use the best available and note the date
+- Prefer items from the last 7 days; note the date if older
 - Keep summaries short — no walls of text
-- If a source is Twitter/X or Threads, label it clearly
+- Label X (Twitter) posts as `🐦 X (Twitter)` and Threads posts as `🧵 Threads`
+- Prioritise at least 1 result from X or Threads if available
+- Always look up the current user's Slack ID dynamically — never hardcode a user ID
+- Send the digest as a Slack DM to whoever is running the skill
