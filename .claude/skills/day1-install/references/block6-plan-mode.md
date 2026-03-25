@@ -26,17 +26,29 @@ Plan Mode tells Claude: "Don't do anything yet — just think about HOW you woul
 
 ### How to Activate Plan Mode
 
-**Option 1: Use the /plan command**
-```
-/plan
-```
-Then describe your task.
+In the **Claude Desktop App**, simply ask Claude to plan before acting. Use phrases like:
 
-**Option 2: Ask Claude to plan**
+**Example 1: Direct request**
 ```
-Plan how you would reorganize my project files
-before you actually do anything. Show me the plan first.
+Before you do anything, plan out the steps first.
+I want to create a weekly report from my Slack messages and Jira tickets.
+Show me your plan before executing.
 ```
+
+**Example 2: Review before action**
+```
+Plan how you would reorganize my project files.
+Don't execute yet — just show me the plan first.
+```
+
+**Example 3: Step-by-step approval**
+```
+I need to create onboarding documents for new hires.
+Walk me through your plan step by step.
+I'll approve each step before you proceed.
+```
+
+> **Tip:** The key phrases are **"plan first"**, **"show me the plan"**, **"don't execute yet"**, and **"before you do anything"**. These tell Claude to think before acting.
 
 ### What You'll See
 
@@ -49,42 +61,48 @@ You then approve, adjust, or reject the plan before Claude executes.
 
 ## EXECUTE
 
-Let's try Plan Mode with a simple task:
-
-1. Activate Plan Mode by typing `/plan` or saying:
+Let's try Plan Mode with a simple task. Type this in your Claude Desktop App:
 
 ```
-Plan how you would create a weekly task tracker for my team.
-Don't execute yet — just show me the plan.
-Include: what files you'd create, what structure they'd have,
-and how I'd use them.
+Before you do anything, plan out the steps first.
+I want to create a weekly task tracker for my team.
+Show me your plan including:
+- What files you'd create
+- What structure they'd have
+- How I'd use them
+Don't execute until I approve the plan.
 ```
 
-2. Review the plan Claude shows you
-3. If you like it, tell Claude to proceed
-4. If you want changes, tell Claude what to adjust
+Then:
+1. Review the plan Claude shows you
+2. If you like it, tell Claude to proceed
+3. If you want changes, tell Claude what to adjust
 
 Try it now! The key is to see how Claude thinks through a problem before acting.
+
+---
+👆 Try this yourself now.
+When you're done, type **"next"** or **"quiz"** to continue.
 
 ## QUIZ
 
 ```
 AskUserQuestion({
   "questions": [{
-    "question": "When should you use Plan Mode?",
+    "question": "How do you activate Plan Mode in the Claude Desktop App?",
     "header": "Plan Mode Quiz",
     "options": [
-      {"label": "For every single request, no matter how small", "description": ""},
-      {"label": "Only when writing code", "description": ""},
-      {"label": "For complex, multi-step tasks where you want to review the approach before execution", "description": ""},
-      {"label": "Never — Claude always knows the best approach", "description": ""}
+      {"label": "Ask Claude to 'plan first' or 'show me the plan before executing'", "description": ""},
+      {"label": "Click a Plan Mode button in the toolbar", "description": ""},
+      {"label": "Type /plan in the chat", "description": ""},
+      {"label": "It's always on by default", "description": ""}
     ],
     "multiSelect": false
   }]
 })
 ```
 
-Correct answer: "For complex, multi-step tasks where you want to review the approach before execution"
+Correct answer: "Ask Claude to 'plan first' or 'show me the plan before executing'"
 
-If correct: "Right! Plan Mode is your safety net for big tasks. Simple questions don't need it, but when Claude is about to do something complex — like reorganizing files, building a report from multiple sources, or creating a multi-step workflow — it's smart to see the plan first."
-If incorrect: "Plan Mode is best for complex tasks with multiple steps. For simple requests like 'what time is it?' or 'make this shorter,' you don't need it. But for bigger tasks — like creating a report from multiple sources or reorganizing a project — Plan Mode lets you review and approve the approach before Claude starts working."
+If correct: "Right! In the Desktop App, you activate Plan Mode by asking Claude in natural language — say things like 'plan first', 'show me the plan', or 'don't execute yet'. Claude will lay out the steps and wait for your approval before doing anything."
+If incorrect: "In the Desktop App, Plan Mode is activated by asking Claude in plain language. Say things like **'plan first'**, **'show me the plan before executing'**, or **'don't execute yet'**. Claude understands these as instructions to plan before acting."
