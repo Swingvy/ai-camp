@@ -1,6 +1,6 @@
 ---
 name: morning-valet
-description: "Run all morning skills in sequence: Slack inbox, Jira tickets, and weekly news digest. Use for 'good morning', 'morning briefing', 'start my day', 'daily briefing', 'morning routine'."
+description: "Run all morning skills in sequence: Slack inbox, Jira tickets, weekly news digest, and standup draft. Use for 'good morning', 'morning briefing', 'start my day', 'daily briefing', 'morning routine'."
 ---
 
 # Morning Valet
@@ -12,6 +12,7 @@ Your personal morning briefing. Runs three skills back-to-back and presents a un
 1. 📬 **Slack Inbox** — who mentioned you, what threads are active
 2. 📋 **Jira Tickets** — what to work on today
 3. 📰 **Weekly News** — what's happening in your industry
+4. 📝 **Standup Draft** — ready-to-paste standup for today
 
 ## First-run setup
 On the very first run (check by whether `~/.claude/morning-valet-prefs.json` exists):
@@ -51,7 +52,14 @@ Execute the `/weekly-news` skill in full.
 - If prefs exist, skip questions and go straight to topic suggestion → search → digest
 - Display results under the header: `━━━ 📰 NEWS ━━━`
 
-**Step 5: Close with a daily focus prompt**
+**Step 5: Run Standup Draft**
+Execute the `/standup-draft` skill in full.
+- Pull yesterday's Jira activity, today's open tickets, and yesterday's standup thread
+- Generate a draft using the 6-section team format
+- Display results under the header: `━━━ 📝 STANDUP ━━━`
+- Ask: "Post this to the standup channel? (yes / no)"
+
+**Step 6: Close with a daily focus prompt**
 After all three sections, print:
 ```
 ━━━ 🎯 TODAY'S FOCUS ━━━
@@ -65,7 +73,7 @@ Have a great day! 💪
 Derive the top 3 from the actual results — pick the highest-priority Slack mention and Jira tickets. Do not make up items.
 
 ## Output format
-Each section is separated by a bold header line. Sections appear in order: Slack → Jira → News → Focus.
+Each section is separated by a bold header line. Sections appear in order: Slack → Jira → News → Standup → Focus.
 Keep each section's output identical to what the individual skill would produce.
 
 ## Error handling
@@ -75,7 +83,7 @@ Keep each section's output identical to what the individual skill would produce.
   ⚠️  Slack is not connected. Skipping this section.
   ```
 - If all three fail: "All tools are currently disconnected. Please check your MCP settings in Claude Desktop."
-- Never stop early — always attempt all three skills even if one fails
+- Never stop early — always attempt all four skills even if one fails
 
 ## Notes
 - On first run, `/weekly-news` may ask for industry + department + schedule preferences. That's expected — it only happens once.
