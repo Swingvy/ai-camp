@@ -116,22 +116,17 @@ gh pr create --title "Add my-skill"   ← Ask for review
 
 ## EXECUTE
 
-Let's practice the git workflow:
+Let's practice the git workflow with a personal repo.
 
-1. If your instructor has set up a team repo, clone it:
+Ask Claude:
 ```
-Ask Claude: "Help me clone the team-skills repo and add my skill to it.
-Walk me through each step."
-```
-
-2. If no team repo exists yet, practice the git flow with a personal repo:
-```
-Ask Claude: "Help me create a GitHub repository called 'my-skills',
-push my skills from .claude/skills/ to it, and create a README."
+Help me create a GitHub repository called 'my-skills',
+push my skills from .claude/skills/ to it, and create a README.
+Walk me through each step.
 ```
 
-3. Either way, the goal is to practice the full flow:
-   - `git pull` → `git checkout -b` → `git add .` → `git commit` → `git push` → `gh pr create`
+This lets you practice the full flow:
+- `git pull` → `git checkout -b` → `git add .` → `git commit` → `git push` → `gh pr create`
 
 Claude will guide you through each command. Ask questions if anything is unclear.
 
