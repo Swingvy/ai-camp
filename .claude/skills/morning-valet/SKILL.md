@@ -44,12 +44,14 @@ Execute the `/slack-inbox` skill in full.
 **Step 3: Run Jira Tickets**
 Execute the `/my-jira-tickets` skill in full.
 - Load prefs from `~/.claude/jira-ticket-prefs.json`, build JQL, fetch tickets, group by status
+- **If prefs file does not exist:** use defaults silently — do NOT ask questions mid-briefing. Save defaults automatically.
 - Display results under the header: `━━━ 📋 JIRA ━━━`
 
 **Step 4: Run Weekly News**
 Execute the `/weekly-news` skill in full.
 - Load prefs from `~/.claude/weekly-news-prefs.json` (industry + department)
 - If prefs exist, skip questions and go straight to topic suggestion → search → digest
+- **If prefs file does not exist:** ask only the industry + department questions (2 questions max), save prefs, then continue. Do NOT ask about scheduling — morning-valet handles that.
 - Display results under the header: `━━━ 📰 NEWS ━━━`
 
 **Step 5: Run Standup Draft**
@@ -86,6 +88,7 @@ Keep each section's output identical to what the individual skill would produce.
 - Never stop early — always attempt all four skills even if one fails
 
 ## Notes
-- On first run, `/weekly-news` may ask for industry + department + schedule preferences. That's expected — it only happens once.
-- On first run, `/my-jira-tickets` may ask for filter preferences. That's expected — it only happens once.
+- On first run, `/weekly-news` will ask for industry + department (2 questions only). That's expected — it only happens once.
+- On first run, `/my-jira-tickets` uses defaults silently — no questions asked inside morning-valet.
 - After first-run setup is complete, `/morning-valet` runs fully automatically with no questions.
+- Scheduling is owned by morning-valet only — individual skills should not ask about scheduling when called from here.

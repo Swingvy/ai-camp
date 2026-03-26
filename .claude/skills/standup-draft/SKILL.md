@@ -25,9 +25,14 @@ Query for tickets currently in progress or to be started today:
 Fetch recent messages from the standup Slack channel (ID: `C017BR4KUPL`) using `slack_get_channel_history`.
 - Look for a message posted by the current user yesterday (or Friday if today is Monday)
 - If found, read any thread replies on that message using `slack_get_thread_replies`
+- Extract the user's "Todo today" items from yesterday's standup message
 - Use this context to:
   - Cross-check what the user said they'd do yesterday vs. what actually happened in Jira
   - Pick up any team comments or follow-ups from the thread that are relevant today
+  - **Flag untracked tasks:** For each "Todo today" item from yesterday, check if a matching Jira ticket exists in the current sprint. If no matching ticket is found, add a note in the draft:
+    ```
+    ⚠️ "[task name]" was in yesterday's todo but has no matching open Jira ticket. Worth creating one?
+    ```
 
 **Step 4: Check for blockers**
 Look for:

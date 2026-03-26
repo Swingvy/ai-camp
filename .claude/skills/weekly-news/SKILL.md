@@ -92,14 +92,28 @@ Here's your weekly digest: [TOPIC] ☕
 ```
 
 **Step 6: Search for news**
+Calculate the date 7 days ago (e.g. if today is 2026-03-26, use after:2026-03-19).
 Run these 4 searches in parallel using the WebSearch tool:
-1. `[TOPIC] news [current year]`
-2. `[TOPIC] announcement release [current year]`
+1. `[TOPIC] news after:[7-days-ago date]`
+2. `[TOPIC] announcement release after:[7-days-ago date]`
 3. `[TOPIC] tool update case study [current year]`
-4. `[TOPIC] site:twitter.com OR site:x.com OR site:threads.net`
+4. `[TOPIC] site:twitter.com OR site:x.com OR site:threads.net after:[7-days-ago date]`
 
 **Step 7: Pick the 5 best results**
-Select the 5 most recent and relevant items. Prefer results from the last 7 days; fall back to 30 days if needed. Include at least 1 from X or Threads if available.
+Count how many results are clearly from the past 7 days (check publish date or URL date).
+
+- **If 3 or more results are from the past 7 days:** Show those first, fill remaining slots from the past 30 days.
+- **If fewer than 3 results are from the past 7 days:** Show this message before the digest:
+  ```
+  📭 Not much happened in [TOPIC] this week. Here are the most relevant items from the past 30 days:
+  ```
+- **If no meaningful results at all (0–1 results total):** Skip the digest and say:
+  ```
+  📭 Nothing special this week in [TOPIC]. Check back next week!
+  ```
+  Then end the skill without sending a Slack DM.
+
+Include at least 1 from X or Threads if available.
 
 **Step 8: Format the digest**
 Present each item as:

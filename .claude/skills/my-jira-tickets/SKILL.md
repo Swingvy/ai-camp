@@ -36,7 +36,7 @@ On first run, if the file does not exist, ask the user these 3 questions. For ea
 
 **Question 1 — Statuses to exclude:**
 "Which statuses should be hidden from your list? (pick numbers or type names)"
-Default if skipped: `["Done", "Closed", "Cancelled"]`
+Default if skipped: `["Done", "Closed", "Cancelled", "Released"]`
 Typical choices: Done, Closed, Cancelled, Released (already shipped — no action needed)
 
 **Question 2 — Self-moved statuses to exclude:**
@@ -53,13 +53,23 @@ Example: pick `In Review` if you want to track tickets under peer review
 Save to `~/.claude/jira-ticket-prefs.json`:
 ```json
 {
-  "exclude_statuses": ["Done", "Closed", "Cancelled"],
+  "exclude_statuses": ["Done", "Closed", "Cancelled", "Released"],
   "exclude_self_moved": ["QA Ready"],
   "must_include_statuses": []
 }
 ```
 
 On subsequent runs, load silently — no questions asked. User can say "change my Jira filters" to update.
+
+**When running inside `/morning-valet`:** If the prefs file does not exist, use defaults silently without asking any questions. Save the defaults file automatically so future runs are also silent:
+```json
+{
+  "exclude_statuses": ["Done", "Closed", "Cancelled", "Released"],
+  "exclude_self_moved": ["QA Ready"],
+  "must_include_statuses": [],
+  "setup_complete": true
+}
+```
 
 ## Steps
 1. Load prefs from `~/.claude/jira-ticket-prefs.json`. If missing, run first-time setup above.
