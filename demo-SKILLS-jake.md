@@ -60,4 +60,4 @@ SUCCESS = I can type /morning-valet and get a full briefing — Slack, Jira, new
 | My Jira Tickets | `/my-jira-tickets` | Lists current sprint tickets grouped by status with clickable Jira links |
 | Weekly News | `/weekly-news` | Delivers 5 most recent news items by industry + department, sent via Slack DM |
 | Standup Draft | `/standup-draft` | Generates standup from Jira activity, yesterday's thread, and today's calendar meetings |
-| Daily Checklist | `/daily-checklist` | Shows a day-of-week task checklist to structure your day |
+| Init Demo | `/init-demo` | One-time setup — seeds all prefs files so morning-valet runs fully automatically |

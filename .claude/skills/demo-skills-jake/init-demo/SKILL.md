@@ -1,56 +1,66 @@
 ---
 name: init-demo
-description: "First-time setup for all morning skills. Seeds prefs files so morning-valet, weekly-news, my-jira-tickets, and standup-draft run without setup questions. Use for 'setup', 'init', 'initialize', 'first time', 'configure my skills'."
+description: "First-time setup for all morning-valet skills. Seeds all prefs files so subsequent runs are fully automatic. Use for 'set up', 'initialize', 'first time setup', 'configure my skills'."
 ---
 
 # Init Demo
 
 ## Steps
 
-**Step 1: Check existing setup**
-Check if `~/.claude/morning-valet-prefs.json` exists.
-- If it does: ask "You're already set up. Reset all preferences?" — if No, stop.
+**Step 1: Check what's already configured**
+Check which prefs files already exist:
+- `~/.claude/morning-valet-prefs.json`
+- `~/.claude/jira-ticket-prefs.json`
+- `~/.claude/weekly-news-prefs.json`
+
+If all three exist, print:
+```
+✅ You're already set up! Run /morning-valet to start your day.
+```
+Then stop.
 
 **Step 2: Ask setup questions**
-Use AskUserQuestion with all three questions at once:
-- Q1: "Which industry are you in?" — options: SaaS / B2B Software · FinTech / Finance · HR Tech / People Ops · HealthTech · E-commerce · EdTech · Logistics · Other
-- Q2: "What's your department?" — options: CEO / Executive · Sales · Marketing · Customer Success · Engineering · Product Management · QA
-- Q3: "Which Jira statuses do you want to hide?" (multiselect) — options: Done · Closed · Cancelled · Released · QA Ready · Release Ready · In Review
+Use AskUserQuestion — first call:
+- Q1: "Which industry are you in?"
+  Options: HR Tech / SaaS | Fintech | Enterprise Software | E-commerce / Retail
+- Q2: "What's your department?"
+  Options: QA | Engineering | Product | CS / Support
 
-**Step 3: Find standup channel**
-Search Slack for a channel whose name contains "standup" or "stand-up" or "daily" using `slack_search_channels`.
-Pick the best match and save its ID.
+Second AskUserQuestion call:
+- Q3: "Which Jira statuses do you want to hide?" (multiSelect: true)
+  Options: Done | Closed | Cancelled | Released
 
-**Step 4: Write all prefs files**
-Write these three files in one go:
+**Step 3: Write all three prefs files**
 
-`~/.claude/weekly-news-prefs.json`
+`~/.claude/weekly-news-prefs.json`:
 ```json
 { "industry": "[Q1 answer]", "department": "[Q2 answer]", "setup_complete": true }
 ```
 
-`~/.claude/jira-ticket-prefs.json`
+`~/.claude/jira-ticket-prefs.json`:
 ```json
 {
-  "exclude_statuses": [Q3 selections, defaults: "Done", "Closed", "Cancelled", "Released"],
+  "exclude_statuses": ["[Q3 selections]"],
   "exclude_self_moved": ["QA Ready"],
   "must_include_statuses": [],
   "setup_complete": true
 }
 ```
 
-`~/.claude/morning-valet-prefs.json`
+`~/.claude/morning-valet-prefs.json`:
 ```json
-{ "setup_complete": true, "standup_channel_id": "[channel ID from Step 3]" }
+{ "setup_complete": true }
 ```
 
-**Step 5: Confirm**
+**Step 4: Confirm**
 ```
-✅ You're all set! Preferences saved.
-   Industry:   [value]
-   Department: [value]
-   Jira hides: [values]
-   Standup channel: #[channel name]
+✅ All set!
+  • Industry: [Q1]
+  • Department: [Q2]
+  • Hidden Jira statuses: [Q3]
 
 Run /morning-valet to start your day.
 ```
+
+## Error handling
+- If a file write fails: show the exact content so the user can create it manually.

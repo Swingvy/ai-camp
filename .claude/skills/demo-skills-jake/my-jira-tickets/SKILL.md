@@ -80,7 +80,12 @@ On subsequent runs, load silently — no questions asked. User can say "change m
    - Must-include: append `OR status IN ([must_include_statuses])` if set
    - Final: `ORDER BY updated DESC`
    - Example output: `assignee = currentUser() AND sprint in openSprints() AND status NOT IN (Done, Closed, Cancelled) AND NOT (status changed to "QA Ready" by currentUser()) ORDER BY updated DESC`
-3. Group tickets by status: Blocked → In Progress → Open/Backlog → Release Ready
+3. Group tickets by status in this order:
+   - 🔴 **BLOCKED** — status is Blocked
+   - 🔵 **WAITING FOR YOUR ACTION** — status is QA Ready (moved by someone else), In Review (peer review needed), or any status in `must_include_statuses` where you are the assignee and did not move it there yourself. These are tickets explicitly waiting for YOU to act on them.
+   - 🟡 **IN PROGRESS** — status is In Progress
+   - 🟢 **TO DO / BACKLOG** — status is Open or Backlog
+   - ⏳ **RELEASE READY** — collapsed summary only
 4. For each ticket, check the latest comment — flag if there is a comment from someone else waiting for a response
 5. Sort within each group by last updated date (most recent first)
 6. Format and display tickets by group; show Release Ready as a collapsed summary
@@ -103,6 +108,12 @@ On subsequent runs, load silently — no questions asked. User can say "change m
   Status: In Progress | No new comments
   🔗 [TICKET-ID](webUrl from Jira response)
   👉 Action needed: Continue work
+
+🔵 WAITING FOR YOUR ACTION
+• [TICKET-ID] Title of ticket
+  Status: QA Ready | Moved by: {name}, {date}
+  🔗 [TICKET-ID](webUrl from Jira response)
+  👉 Action needed: Ready to test
 
 🟢 TO DO / BACKLOG
 • [TICKET-ID] Title of ticket
