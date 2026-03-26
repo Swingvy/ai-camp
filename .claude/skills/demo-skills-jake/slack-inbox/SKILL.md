@@ -35,9 +35,10 @@ Limit to the last 24 hours (or 48 hours on Mondays).
 If a message appears in both mentions and channel activity, show it only once under "Mentions".
 
 **Step 4: Classify each message**
-For each message, determine:
-- Does it need a reply from you? → mark as `👉 Action needed`
-- Is it FYI / no reply needed? → mark as `📌 FYI`
+Use these exact rules:
+
+- **Action needed** → someone @mentioned the current user directly by name or user ID in the message body. They are waiting for a response.
+- **FYI (cc)** → the current user was not directly @mentioned, but is in the channel or thread where this message appeared (e.g. they were cc'd by being a thread participant, or it's a channel they're in). No reply expected but worth knowing.
 
 **Step 5: Format and display**
 
@@ -49,21 +50,21 @@ For each message, determine:
 🔴 DIRECT MENTIONS ({N})
 • #{channel} — {sender_name}, {time}
   "{message snippet}"
-  👉 Action needed: Reply
+  👉 Action needed: Reply — @mentioned directly
 
 • #{channel} — {sender_name}, {time}
   "{message snippet}"
-  📌 FYI — no reply needed
+  📌 FYI (cc) — no reply needed
 
 ---
 💬 CHANNEL & THREAD ACTIVITY ({N})
 • #{channel} / 🧵 thread by {original_poster}, {time}
   Latest: "{message snippet}" — {sender_name}
-  👉 Action needed: Catch up and reply
+  👉 Action needed: Reply — @mentioned directly
 
 • #{channel}, {time}
   "{message snippet}" — {sender_name}
-  📌 FYI
+  📌 FYI (cc)
 
 ---
 ✅ Nothing else unread. You're all caught up!

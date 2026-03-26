@@ -22,7 +22,8 @@ Query for tickets currently in progress or to be started today:
 - JQL: `assignee = currentUser() AND sprint in openSprints() AND status IN ("In Progress", "To Do", "Open", "Backlog") ORDER BY updated DESC`
 
 **Step 3: Read yesterday's standup thread**
-Fetch recent messages from the standup Slack channel (ID: `C017BR4KUPL`) using `slack_get_channel_history`.
+Use standup channel ID `C017BR4KUPL` by default (Swingvy #standup). To use a different channel, search with `slack_search_channels` for a channel named "standup", "stand-up", or "daily-standup" and use that ID instead. If no override is found, fall back to `C017BR4KUPL`.
+Fetch recent messages from that channel using `slack_get_channel_history`.
 - Look for a message posted by the current user yesterday (or Friday if today is Monday)
 - If found, read any thread replies on that message using `slack_get_thread_replies`
 - Extract the user's "Todo today" items from yesterday's standup message
@@ -84,7 +85,7 @@ For "Today, I'm" — pick an appropriate emoji based on workload (🙂 normal, �
 **Step 7: Ask if the user wants to post it**
 After showing the draft, ask:
 "Post this to Slack? (yes / no — it will be posted to the standup channel)"
-- If yes → post the draft as a new message to channel `C017BR4KUPL`
+- If yes → post the draft as a new message to the standup channel found in Step 3
 - If no → display the draft cleanly so the user can copy-paste it themselves
 
 ## Output format

@@ -99,13 +99,13 @@ Run these 4 searches in parallel using the WebSearch tool:
 3. `[TOPIC] tool update case study [current year]`
 4. `[TOPIC] site:twitter.com OR site:x.com OR site:threads.net after:[7-days-ago date]`
 
-**Step 7: Pick the 5 best results**
-Count how many results are clearly from the past 7 days (check publish date or URL date).
+**Step 7: Pick the 5 most recent results**
+Sort all results from the 4 searches by publish date (newest first). Take the top 5.
 
-- **If 3 or more results are from the past 7 days:** Show those first, fill remaining slots from the past 30 days.
+- **If 3 or more results are from the past 7 days:** Show them — no extra message needed.
 - **If fewer than 3 results are from the past 7 days:** Show this message before the digest:
   ```
-  📭 Not much happened in [TOPIC] this week. Here are the most relevant items from the past 30 days:
+  📭 Not much happened in [TOPIC] this week. Here are the most recent items from the past 30 days:
   ```
 - **If no meaningful results at all (0–1 results total):** Skip the digest and say:
   ```
