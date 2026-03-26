@@ -35,81 +35,26 @@ Good morning! 🌅 Today is [Day], [Month DD YYYY].
 Fetching your briefing... ⏳
 ```
 
-Then use the `Agent` tool to launch ALL subagents **in a single message** — this is what makes it fast. Never spawn one at a time.
+The base directory for this skill is shown at the top of this skill run (e.g. `/path/to/.claude/skills/demo-skills-jake`). Sub-skill files are siblings in that same directory — read them directly using that path. Never search for them.
 
----
-
-**Subagent A — Slack Inbox**
-```
-Fetch Slack inbox data for the current user.
-1. Look up the current user's Slack ID dynamically
-2. Search for direct @mentions in the last 24h (48h if today is Monday)
-3. Check thread/channel activity for messages the user hasn't replied to
-4. Classify each message:
-   - Direct @mention in message body → "👉 Action needed: Reply — @mentioned directly"
-   - Thread/channel presence, not @mentioned → "📌 FYI (cc)"
-Return the complete formatted section starting with: ━━━ 📬 SLACK ━━━
-```
-
-**Subagent B — Jira Tickets**
-```
-Fetch Jira tickets for the current user.
-1. Load ~/.claude/jira-ticket-prefs.json — if missing, use silent defaults:
-   exclude_statuses: ["Done", "Closed", "Cancelled", "Released"]
-   exclude_self_moved: ["QA Ready"]
-2. JQL: assignee = currentUser() AND sprint in openSprints() AND status NOT IN ([exclude_statuses]) AND NOT (status changed to "QA Ready" by currentUser()) ORDER BY updated DESC
-3. Group by: 🔴 BLOCKED → 🟡 IN PROGRESS → 🟢 TO DO/BACKLOG → ⏳ RELEASE READY
-4. Each ticket: 🔗 [TICKET-ID](https://swingvy.atlassian.net/browse/TICKET-ID) Title — Status
-Return the complete formatted section starting with: ━━━ 📋 JIRA ━━━
-```
-
-**Subagent C — Standup Draft**
-```
-Generate a standup draft.
-1. Fetch in parallel:
-   a. Yesterday's Jira: assignee = currentUser() AND updated >= -1d (use -3d on Mondays)
-   b. Today's open Jira: assignee = currentUser() AND sprint in openSprints() AND status IN ("In Progress", "To Do", "Open", "Backlog")
-   c. Yesterday's standup thread from channel C017BR4KUPL — find the bot reminder message and read the user's reply
-   d. Today's Google Calendar events — exclude all-day, declined, and events with "standup"/"stand-up"/"daily scrum" in the title
-2. Cross-check yesterday's "Todo today" items against open Jira — flag any with no matching ticket (⚠️)
-3. Generate draft in 6-section team format:
-   1. Today, I'm [emoji based on workload]
-   2. Done  3. Delayed  4. Todo today  5. Blockage
-   6. ETC — list calendar meetings as [HH:MM] Title
-Return the complete formatted section starting with: ━━━ 📝 STANDUP ━━━
-End with an AskUserQuestion: "Post this to the standup channel?" with options "Yes, post it" / "No, I'll copy-paste"
-```
-
-**Subagent D — Weekly News (Mondays only)**
-```
-Only run if today is Monday. If not Monday, return exactly: SKIP
-If Monday:
-1. Load ~/.claude/weekly-news-prefs.json for saved topic
-2. Calculate 7 days ago date. Run 4 parallel searches:
-   - [TOPIC] news after:[date]
-   - [TOPIC] announcement release after:[date]
-   - [TOPIC] tool update case study [year]
-   - [TOPIC] site:twitter.com OR site:x.com OR site:threads.net after:[date]
-3. Sort all results by publish date, pick 5 most recent
-4. If <3 from past 7 days: prefix "📭 Not much this week — most recent items:"
-5. If 0–1 results total: return "📭 Nothing special this week."
-Return the complete formatted section starting with: ━━━ 📰 NEWS ━━━
-```
-
----
+**If the `Agent` tool is available:** launch ALL four subagents in a single message using the Agent tool. Pass each subagent the full contents of its SKILL.md as the prompt, read from:
+- `{base_dir}/slack-inbox/SKILL.md` → Subagent A
+- `{base_dir}/my-jira-tickets/SKILL.md` → Subagent B
+- `{base_dir}/standup-draft/SKILL.md` → Subagent C
+- `{base_dir}/weekly-news/SKILL.md` → Subagent D (only if today is Monday)
 
 Wait for all subagents to return, then proceed to Step 2.
 
 **If `Agent` tool is NOT available — sequential fallback:**
-Run each section one at a time, printing the header before starting each fetch so the user sees progress:
+Read each SKILL.md directly using the base directory path and execute sequentially, printing each header before starting that fetch:
 ```
-━━━ 📬 SLACK ━━━  ← print this, then fetch
+━━━ 📬 SLACK ━━━  ← print this, then execute slack-inbox/SKILL.md
 [results]
-━━━ 📋 JIRA ━━━  ← print this, then fetch
+━━━ 📋 JIRA ━━━  ← print this, then execute my-jira-tickets/SKILL.md
 [results]
-━━━ 📰 NEWS ━━━  ← Monday only
+━━━ 📰 NEWS ━━━  ← Monday only, execute weekly-news/SKILL.md
 [results]
-━━━ 📝 STANDUP ━━━  ← print this, then fetch
+━━━ 📝 STANDUP ━━━  ← print this, then execute standup-draft/SKILL.md
 [results]
 ```
 
