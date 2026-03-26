@@ -8,8 +8,8 @@ description: "Run all morning skills in sequence: Slack inbox, Jira tickets, wee
 ## What this skill does
 Your personal morning briefing. Runs four skills back-to-back and presents a unified summary so you start the day knowing exactly what needs your attention — without switching between tools.
 
-**Execution model: parallel data fetch → sequential display**
-All data is fetched in parallel first (like subagents), then results are formatted and displayed in order. This cuts total runtime from ~60s to ~15s.
+**Execution model: first-done, first-served**
+Fire all data fetches simultaneously. As soon as each fetch completes, display that section immediately — do not wait for the others. Sections may appear out of order; that's expected and preferred over waiting.
 
 ## First-run setup
 On the very first run (check by whether `~/.claude/morning-valet-prefs.json` exists):
@@ -44,7 +44,7 @@ Then fire ALL of the following in parallel — do not wait for one before starti
 | **News search** | **Mondays only.** Check today's day of week — if Monday, load `~/.claude/weekly-news-prefs.json` and run 4 parallel searches for the saved topic. If not Monday, skip this fetch entirely. |
 | **Standup data** | Fetch: yesterday's Jira activity, today's open Jira tickets, yesterday's standup thread, today's calendar events |
 
-Wait for all fetches to complete before moving to Step 2.
+As each fetch completes, immediately display that section — do not wait for the others to finish first.
 
 **Step 2: Display Slack results**
 Format and print under `━━━ 📬 SLACK ━━━`
@@ -69,8 +69,8 @@ Format and print under `━━━ 📝 STANDUP ━━━`
 - ETC: list today's calendar meetings (exclude standup itself)
 - Ask: "Post this to the standup channel? (yes / no)"
 
-**Step 6: Close with a daily focus prompt
-After all four sections, print:
+**Step 6: Close with a daily focus prompt**
+Once all sections have arrived, print:
 ```
 ━━━ 🎯 TODAY'S FOCUS ━━━
 Based on the above, here are your top 3 priorities for today:
