@@ -11,25 +11,24 @@ Jira and Slack — no more staring at a blank screen trying to remember yesterda
 
 ## Steps
 
-**Step 1: Fetch all data in parallel**
-Fire ALL of the following at the same time — do not wait for one before starting the next:
+**Phase A: Find standup channel + fetch all data in parallel**
+First, determine the standup channel:
+- Check `~/.claude/morning-valet-prefs.json` for a `standup_channel_id` field — use it if present.
+- If not found, search Slack for a channel whose name contains "standup", "stand-up", or "daily" using `slack_search_channels`. Use the best match. Save the ID to `~/.claude/morning-valet-prefs.json` for next time.
+
+Then fire ALL of the following in a single message — do not wait for one before starting the next:
 
 | Fetch | What to do |
 |---|---|
-| **Jira yesterday** | JQL: `assignee = currentUser() AND updated >= -1d ORDER BY updated DESC` (use `-3d` on Mondays) |
-| **Jira today** | JQL: `assignee = currentUser() AND sprint in openSprints() AND status IN ("In Progress", "To Do", "Open", "Backlog") ORDER BY updated DESC` |
-| **Standup thread** | `slack_get_channel_history` on the standup channel, then `slack_read_thread` on yesterday's bot reminder message |
+| **Jira yesterday** | JQL: `assignee = currentUser() AND updated >= -1d AND status changed DURING (-1d, now()) ORDER BY updated DESC` (use `-3d` on Mondays) |
+| **Jira today** | JQL: `assignee = currentUser() AND sprint in openSprints() AND status NOT IN (Done, Closed, Cancelled, Released) ORDER BY updated DESC` |
+| **Slack standup thread** | `slack_get_channel_history` on the standup channel — find the user's message from yesterday (or Friday if Monday), read thread replies |
 | **Slack blockers** | `slack_search_public_and_private` for direct mentions from yesterday that have no reply from current user |
 | **Calendar** | `gcal_list_events` for today 00:00–23:59, filter out all-day, declined, and standup/stand-up/daily-scrum events |
 
-Wait for all fetches to complete, then proceed.
+Wait for all four fetches to complete, then move to Phase B.
 
-**Step 2: Cross-check yesterday's todos**
-From the standup thread, extract the user's "Todo today" items.
-- For each item, check if a matching Jira ticket exists in the current sprint (title substring match)
-- If no match: flag with `⚠️ "[task]" was in yesterday's todo but has no open Jira ticket — worth creating one?`
-
-**Step 3: Generate the standup draft**
+**Phase B: Generate the standup draft**
 Using all data fetched in Step 1:
 Format the output using the team's standup form — 6 sections, bullet points, plain language:
 
@@ -64,10 +63,10 @@ Use plain, natural language. Keep each bullet to one line.
 Action verbs to use: Completed, Moved to QA, Reviewed, Fixed, Updated, Started, Commented on, Closed.
 For "Today, I'm" — pick an appropriate emoji based on workload (🙂 normal, 😅 busy, 😴 slow day, etc.).
 
-**Step 4: Ask if the user wants to post it**
+**Step 3: Ask if the user wants to post it**
 After showing the draft, use the `AskUserQuestion` tool with these exact options:
 - Question: "Post this to the standup channel?"
-- Option A: "Yes, post it" → post the draft as a new message to the standup channel
+- Option A: "Yes, post it" → post the draft as a new message to the standup channel found in Phase A
 - Option B: "No, I'll copy-paste" → display the draft cleanly and stop
 
 Do NOT use plain text "yes / no" — always use AskUserQuestion so the user gets a clickable button.

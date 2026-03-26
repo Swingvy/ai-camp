@@ -84,6 +84,7 @@ On subsequent runs, load silently — no questions asked. User can say "change m
 4. For each ticket, check the latest comment — flag if there is a comment from someone else waiting for a response
 5. Sort within each group by last updated date (most recent first)
 6. Format and display tickets by group; show Release Ready as a collapsed summary
+   - For ticket links, always use the `webUrl` field from the Jira API response — never construct URLs manually
 
 ## Output format
 
@@ -94,19 +95,19 @@ On subsequent runs, load silently — no questions asked. User can say "change m
 🔴 BLOCKED
 • [TICKET-ID] Title of ticket
   Status: Blocked | Latest comment: "{comment snippet}" — {commenter}, {date}
-  🔗 [TICKET-ID](https://swingvy.atlassian.net/browse/[TICKET-ID])
+  🔗 [TICKET-ID](webUrl from Jira response)
   👉 Action needed: Respond to comment / Unblock dependency
 
 🟡 IN PROGRESS
 • [TICKET-ID] Title of ticket
   Status: In Progress | No new comments
-  🔗 [TICKET-ID](https://swingvy.atlassian.net/browse/[TICKET-ID])
+  🔗 [TICKET-ID](webUrl from Jira response)
   👉 Action needed: Continue work
 
 🟢 TO DO / BACKLOG
 • [TICKET-ID] Title of ticket
   Status: Backlog | Updated: {date}
-  🔗 [TICKET-ID](https://swingvy.atlassian.net/browse/[TICKET-ID])
+  🔗 [TICKET-ID](webUrl from Jira response)
   👉 Action needed: Pick up and start
 
 ---
