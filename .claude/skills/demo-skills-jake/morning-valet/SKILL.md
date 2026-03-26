@@ -8,8 +8,9 @@ description: "Run all morning skills in sequence: Slack inbox, Jira tickets, wee
 ## What this skill does
 Your personal morning briefing. Runs four skills back-to-back and presents a unified summary so you start the day knowing exactly what needs your attention — without switching between tools.
 
-**Execution model: true parallel subagents**
-Use the `Agent` tool to spawn independent subagents simultaneously. Each subagent runs its own MCP calls in isolation and returns a formatted section. Spawn all agents in a single message — never one at a time.
+**Execution model: parallel if possible, sequential fallback**
+- **If the `Agent` tool is available:** spawn all subagents simultaneously in a single message for ~15–30s total runtime.
+- **If the `Agent` tool is not available:** run each section sequentially (Slack → Jira → News → Standup), printing each section header before starting that fetch so the user sees progress.
 
 ## First-run setup
 On the very first run (check by whether `~/.claude/morning-valet-prefs.json` exists):
@@ -97,10 +98,23 @@ Return the complete formatted section starting with: ━━━ 📰 NEWS ━━�
 
 ---
 
-Wait for all subagents to return, then proceed.
+Wait for all subagents to return, then proceed to Step 2.
+
+**If `Agent` tool is NOT available — sequential fallback:**
+Run each section one at a time, printing the header before starting each fetch so the user sees progress:
+```
+━━━ 📬 SLACK ━━━  ← print this, then fetch
+[results]
+━━━ 📋 JIRA ━━━  ← print this, then fetch
+[results]
+━━━ 📰 NEWS ━━━  ← Monday only
+[results]
+━━━ 📝 STANDUP ━━━  ← print this, then fetch
+[results]
+```
 
 **Step 2: Assemble and display results**
-Display sections in order: Slack → Jira → News (skip if Subagent D returned SKIP) → Standup
+Display sections in order: Slack → Jira → News (skip if Subagent D returned SKIP or if not Monday) → Standup
 
 **Step 6: Close with a daily focus prompt**
 Once all sections have arrived, print:
